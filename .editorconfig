@@ -1,0 +1,26 @@
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
+# Gradle files
+[*.gradle]
+indent_size = 4
+
+# Java files
+[*.java]
+indent_size = 4
+
+# XML files
+[*.xml]
+indent_size = 4
