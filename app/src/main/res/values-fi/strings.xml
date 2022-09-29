@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lukihäiriöseula</string>
+
+    <!-- Settings Activity -->
+    <string name="settings_header">Asetukset</string>
+    <string name="screening_header">Seulonta</string>
+    <string name="user_interface_header">Käyttöliittymä</string>
+    <string name="toggle_timer_header">Ajastin</string>
+    <string name="toggle_timer_description">Aseta aikaraja kokeelle</string>
+    <string name="select_time_header">Aikaraja</string>
+    <string name="select_time_description">%d minuuttia</string>
+    <string name="select_question_count_header">Kysymysten määrä</string>
+    <string name="select_question_count_description">%d kysymystä</string>
+    <string name="select_language_header">Kieli</string>
+    <string name="restart_button">Käynnistä</string>
+    <string name="restart_message">Käynnistetäänkö uudelleen?</string>
 </resources>
