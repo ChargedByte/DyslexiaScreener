@@ -1,17 +1,12 @@
 package fi.metropolia.capslock.dyslexiascreener;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import fi.metropolia.capslock.dyslexiascreener.data.ScreeningDatabase;
-import fi.metropolia.capslock.dyslexiascreener.data.dao.TestDao;
-import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
  * Application entrypoint, first activity loaded when the app starts.
@@ -22,33 +17,31 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
  */
 public class MainActivity extends AppCompatActivity {
 
-    SeekBar ageSeekbar;
-    EditText nameText;
-    TextView currentAgeText;
+    private EditText editTextName;
+    private SeekBar seekBarAge;
+    private TextView textViewAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameText = (EditText) findViewById(R.id.nameEditText);
-        ageSeekbar = (SeekBar) findViewById(R.id.ageseekBar);
-        currentAgeText = (TextView) findViewById(R.id.currentAge);
+        editTextName = (EditText) findViewById(R.id.nameEditText);
+        seekBarAge = (SeekBar) findViewById(R.id.ageseekBar);
+        textViewAge = (TextView) findViewById(R.id.currentAge);
 
-        ageSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                currentAgeText.setText(Integer.toString(progress));
+                textViewAge.setText(Integer.toString(progress));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
     }
@@ -56,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Start the test with given name and age.
+     *
      * @param view View of item clicked
      */
     public void startTest(View view) {
-        String name = nameText.getText().toString();
-        int age = ageSeekbar.getProgress();
+        String name = editTextName.getText().toString();
+        int age = seekBarAge.getProgress();
+
+        // TODO: Start test
     }
 
 }
