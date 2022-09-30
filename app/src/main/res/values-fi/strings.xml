@@ -2,6 +2,10 @@
 <resources>
     <string name="app_name">Lukihäiriöseula</string>
 
+    <!-- Main Activity -->
+    <string name="name_header">Nimi</string>
+    <string name="age_header">Ikä</string>
+
     <!-- Settings Activity -->
     <string name="settings_header">Asetukset</string>
     <string name="screening_header">Seulonta</string>

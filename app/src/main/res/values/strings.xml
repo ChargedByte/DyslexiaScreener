@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Dyslexia Screener</string>
 
+    <!-- Main Activity -->
+    <string name="name_header">Name</string>
+    <string name="age_header">Age</string>
+
     <!-- Settings Activity -->
     <string name="settings_header">Settings</string>
     <string name="screening_header">Screening</string>

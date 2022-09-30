@@ -6,19 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/textViewLabelName"
+        style="@style/TextAppearance.Material3.LabelLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/name_header"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextName"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
-        android:id="@+id/nameEditText"
+        android:id="@+id/editTextName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Nimi"
+        android:hint="@string/name_header"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/nameSideText"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/nameSideText" />
+        app:layout_constraintStart_toEndOf="@+id/textViewLabelName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewLabelAge"
+        style="@style/TextAppearance.Material3.LabelLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/age_header"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextAge"
+        app:layout_constraintEnd_toStartOf="@+id/editTextAge"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/age_header"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -27,58 +65,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:onClick="startTest"
+        android:tint="?attr/colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
 
-    <TextView
-        android:id="@+id/nameSideText"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Nimi:"
-        app:layout_constraintEnd_toStartOf="@+id/nameEditText"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ageSideText"
-        android:layout_width="31dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Ikä:"
-        app:layout_constraintEnd_toStartOf="@+id/ageseekBar"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameSideText" />
-
-    <SeekBar
-        android:id="@+id/ageseekBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:max="13"
-        android:min="8"
-        android:progress="8"
-        app:layout_constraintBottom_toBottomOf="@+id/ageSideText"
-        app:layout_constraintEnd_toStartOf="@+id/currentAge"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ageSideText"
-        app:layout_constraintTop_toTopOf="@+id/ageSideText" />
-
-    <TextView
-        android:id="@+id/currentAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="(valittu ikä)"
-        app:layout_constraintBaseline_toBaselineOf="@+id/ageSideText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ageseekBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
