@@ -16,10 +16,8 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Locale;
-
 import fi.metropolia.capslock.dyslexiascreener.settings.SettingsActivity;
-import fi.metropolia.capslock.dyslexiascreener.utils.LocaleUtil;
+import fi.metropolia.capslock.dyslexiascreener.utils.LocalizationUtil;
 
 /**
  * Application entrypoint, first activity loaded when the app starts.
@@ -29,21 +27,22 @@ import fi.metropolia.capslock.dyslexiascreener.utils.LocaleUtil;
  * @author Peetu Saarinen
  */
 public class MainActivity extends AppCompatActivity {
-    private Context context;
 
     private EditText editTextName;
     private EditText editTextAge;
     private FloatingActionButton floatingActionButton;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String language = sharedPreferences.getString("language", "en");
+        super.attachBaseContext(LocalizationUtil.applyLanguage(newBase, language));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String language = sharedPreferences.getString("select_language", Locale.getDefault().getLanguage());
-
-        context = LocaleUtil.setLocale(getApplicationContext(), language);
 
         editTextName = findViewById(R.id.editTextName);
         editTextAge = findViewById(R.id.editTextAge);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuItemSettings:
-                startActivity(new Intent(context, SettingsActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

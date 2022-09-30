@@ -3,26 +3,26 @@
     <PreferenceCategory app:title="@string/screening_header">
         <SwitchPreferenceCompat
             app:defaultValue="false"
-            app:key="toggle_timer"
-            app:summary="@string/toggle_timer_description"
-            app:title="@string/toggle_timer_header" />
+            app:key="timer_enabled"
+            app:summary="@string/timer_enabled_description"
+            app:title="@string/timer_enabled_header" />
         <ListPreference
             app:defaultValue="12"
-            app:dependency="toggle_timer"
-            app:key="select_time"
-            app:title="@string/select_time_header" />
+            app:dependency="timer_enabled"
+            app:key="time_limit"
+            app:title="@string/time_limit_header" />
         <ListPreference
             app:defaultValue="12"
-            app:key="select_question_count"
-            app:title="@string/select_question_count_header" />
+            app:key="question_count"
+            app:title="@string/question_count_header" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/user_interface_header">
         <ListPreference
             app:entries="@array/supportedLanguages"
             app:entryValues="@array/supportedLanguageCodes"
-            app:key="select_language"
-            app:title="@string/select_language_header" />
+            app:key="language"
+            app:title="@string/language_header" />
     </PreferenceCategory>
 
 </PreferenceScreen>

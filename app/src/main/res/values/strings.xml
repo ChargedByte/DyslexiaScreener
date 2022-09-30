@@ -9,13 +9,13 @@
     <string name="settings_header">Settings</string>
     <string name="screening_header">Screening</string>
     <string name="user_interface_header">User Interface</string>
-    <string name="toggle_timer_header">Timer</string>
-    <string name="toggle_timer_description">Set a time limit for the test</string>
-    <string name="select_time_header">Time limit</string>
+    <string name="timer_enabled_header">Timer</string>
+    <string name="timer_enabled_description">Set a time limit for the test</string>
+    <string name="time_limit_header">Time limit</string>
     <string name="select_time_description">%d minutes</string>
-    <string name="select_question_count_header">Number of questions</string>
+    <string name="question_count_header">Number of questions</string>
     <string name="select_question_count_description">%d questions</string>
-    <string name="select_language_header">Language</string>
+    <string name="language_header">Language</string>
     <string name="restart_button">Restart</string>
     <string name="restart_message">Restart to apply the language?</string>
 </resources>
