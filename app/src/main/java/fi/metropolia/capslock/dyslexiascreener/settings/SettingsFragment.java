@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Resources resources = getResources();
 
 
-        ListPreference selectTime = findPreference("select_time");
+        ListPreference selectTime = findPreference("time_limit");
 
         if (selectTime != null) {
             int[] timeLimits = {4, 6, 8, 12};
@@ -60,7 +60,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
         }
 
-        ListPreference selectQuestionCount = findPreference("select_question_count");
+        ListPreference selectQuestionCount = findPreference("question_count");
 
         if (selectQuestionCount != null) {
             int[] questionCounts = {4, 6, 8, 12};
@@ -84,7 +84,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
         }
 
-        ListPreference selectLanguage = findPreference("select_language");
+        ListPreference selectLanguage = findPreference("language");
 
         if (selectLanguage != null) {
             String systemLanguage = Locale.getDefault().getLanguage();
