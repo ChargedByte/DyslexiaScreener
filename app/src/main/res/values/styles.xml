@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.AppCompat.EditText.DyslexiaScreener" parent="Widget.AppCompat.EditText">
+        <item name="android:importantForAutofill">no</item>
+    </style>
+</resources>

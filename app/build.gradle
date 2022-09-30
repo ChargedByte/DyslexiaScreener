@@ -41,4 +41,13 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.4.3'
     annotationProcessor 'androidx.room:room-compiler:2.4.3'
     testImplementation 'androidx.room:room-testing:2.4.3'
+
+    // Android Preferences
+    implementation 'androidx.preference:preference:1.2.0'
+}
+
+configurations {
+    all {
+        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+    }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="supportedLanguages">
+        <item>Englanti</item>
+        <item>Suomi</item>
+    </string-array>
+</resources>
