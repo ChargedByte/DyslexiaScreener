@@ -19,4 +19,8 @@
     <string name="language_header">Kieli</string>
     <string name="restart_button">Käynnistä</string>
     <string name="restart_message">Käynnistetäänkö uudelleen?</string>
+
+    <!-- History Activity -->
+    <string name="history_header">Historia</string>
+    <string name="age_message">%d vuotta vanha</string>
 </resources>

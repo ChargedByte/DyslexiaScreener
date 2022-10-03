@@ -18,4 +18,8 @@
     <string name="language_header">Language</string>
     <string name="restart_button">Restart</string>
     <string name="restart_message">Restart to apply the language?</string>
+
+    <!-- History Activity -->
+    <string name="history_header">History</string>
+    <string name="age_message">%d year old</string>
 </resources>

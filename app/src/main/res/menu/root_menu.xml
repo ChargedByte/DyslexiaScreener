@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menuItemHistory"
+        android:icon="@drawable/ic_baseline_checklist_24"
+        android:title="@string/history_header"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/menuItemSettings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/settings_header"

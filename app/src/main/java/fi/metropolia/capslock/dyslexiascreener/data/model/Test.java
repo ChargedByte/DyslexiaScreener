@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.time.OffsetDateTime;
 
 /**
- * Entity / Data class that represents a single take of the test
+ * Entity / Data-class that represents a single take of the test
  *
  * @author Peetu Saarinen
  */
@@ -42,13 +42,13 @@ public class Test {
     }
 
     @Ignore
-    public Test(String studentName, int studentAge, int studentPoints, int availablePoints) {
+    public Test(String studentName, int studentAge) {
         this.id = 0;
         this.timestamp = OffsetDateTime.now();
         this.studentName = studentName;
         this.studentAge = studentAge;
-        this.studentPoints = studentPoints;
-        this.availablePoints = availablePoints;
+        this.studentPoints = 0;
+        this.availablePoints = 0;
     }
 
     public long getId() {
