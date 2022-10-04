@@ -21,6 +21,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".TextRecognition"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LetterSelectionActivity"
             android:exported="false">
             <meta-data
