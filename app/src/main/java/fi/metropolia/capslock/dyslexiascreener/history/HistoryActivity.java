@@ -9,7 +9,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
+/**
+ * Activity-class for displaying saved {@link Test} entities.
+ *
+ * @author Peetu Saarinen
+ */
 public class HistoryActivity extends AppCompatActivity {
     private RecyclerView recyclerViewHistory;
 

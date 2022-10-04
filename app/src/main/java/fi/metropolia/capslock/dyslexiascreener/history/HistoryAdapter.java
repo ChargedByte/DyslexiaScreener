@@ -16,6 +16,11 @@ import java.util.List;
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
+/**
+ * Extension-class to {@link RecyclerView.Adapter} for displaying {@link Test} entities in the {@link HistoryActivity}.
+ *
+ * @author Peetu Saarinen
+ */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private List<Test> items;
 
@@ -55,6 +60,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return items.size();
     }
 
+    /**
+     * Extension-class to {@link RecyclerView.ViewHolder} that provides {@link HistoryAdapter} with the elements in the item {@link View}.
+     *
+     * @author Peetu Saarinen
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewName;
         private final TextView textViewAge;

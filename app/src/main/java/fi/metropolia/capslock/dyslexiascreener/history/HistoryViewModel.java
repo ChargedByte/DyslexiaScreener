@@ -11,6 +11,11 @@ import java.util.List;
 import fi.metropolia.capslock.dyslexiascreener.data.ScreeningDatabase;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
+/**
+ * ViewModel-class for the {@link HistoryActivity}.
+ *
+ * @author Peetu Saarinen
+ */
 public class HistoryViewModel extends AndroidViewModel {
     private ScreeningDatabase database;
 
