@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton = findViewById(R.id.floatingActionButton);
 
         floatingActionButton.setOnClickListener(this::startTest);
+
     }
 
     @Override
@@ -75,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
      * @param view A {@link View} of item clicked
      */
     public void startTest(View view) {
-        String name = editTextName.getText().toString();
-        int age = Integer.parseInt(editTextAge.getText().toString());
+        //String name = editTextName.getText().toString();
+        //int age = Integer.parseInt(editTextAge.getText().toString());
 
         // TODO: Start test
+        startActivity(new Intent(this, TextRecognition.class));
+
     }
 
 }
