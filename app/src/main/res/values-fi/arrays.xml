@@ -4,4 +4,11 @@
         <item>Englanti</item>
         <item>Suomi</item>
     </string-array>
+
+    <string-array name="probabilities">
+        <item>Tuntematon</item>
+        <item>Matala</item>
+        <item>Keskisuuri</item>
+        <item>Korkea</item>
+    </string-array>
 </resources>

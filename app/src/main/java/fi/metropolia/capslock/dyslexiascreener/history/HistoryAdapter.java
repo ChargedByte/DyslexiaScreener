@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,13 +26,12 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private List<Test> items;
 
+    /**
+     * Constructs a {@link HistoryAdapter} class with an empty <code>items</code> list.
+     */
     public HistoryAdapter() {
         //this.items = Collections.emptyList();
         this.items = Arrays.asList(new Test("Test Name 1", 8), new Test("Test Name 2", 13), new Test("Test Name 3", 10));
-    }
-
-    public HistoryAdapter(List<Test> items) {
-        this.items = items;
     }
 
     public void setItems(List<Test> items) {
@@ -51,8 +52,20 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Context context = holder.itemView.getContext();
         Resources resources = context.getResources();
 
-        holder.getTextViewName().setText(item.getStudentName());
-        holder.getTextViewAge().setText(String.format(resources.getString(R.string.age_message), item.getStudentAge()));
+        String probability = resources.getStringArray(R.array.probabilities)[0]; // TODO: Calculate probability
+
+        holder.getTextViewNameAndAge()
+            .setText(String.format("%s, %s", item.getStudentName(), String.format(resources.getString(R.string.age_message), item.getStudentAge())));
+
+        holder.getTextViewDateTime()
+            .setText(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(item.getTimestamp()));
+
+        holder.getTextViewProbability()
+            .setText(String.format(resources.getString(R.string.probability_message), probability));
+
+        holder.getTextViewScore()
+            .setText(String.format(resources.getString(R.string.score_message),
+                item.getStudentPoints() + "/" + item.getAvailablePoints()));
     }
 
     @Override
@@ -66,22 +79,34 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      * @author Peetu Saarinen
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textViewName;
-        private final TextView textViewAge;
+        private final TextView textViewNameAndAge;
+        private final TextView textViewDateTime;
+        private final TextView textViewProbability;
+        private final TextView textViewScore;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.textViewName);
-            textViewAge = itemView.findViewById(R.id.textViewAge);
+            textViewNameAndAge = itemView.findViewById(R.id.textViewNameAndAge);
+            textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
+            textViewProbability = itemView.findViewById(R.id.textViewProbability);
+            textViewScore = itemView.findViewById(R.id.textViewScore);
         }
 
-        public TextView getTextViewName() {
-            return textViewName;
+        public TextView getTextViewNameAndAge() {
+            return textViewNameAndAge;
         }
 
-        public TextView getTextViewAge() {
-            return textViewAge;
+        public TextView getTextViewDateTime() {
+            return textViewDateTime;
+        }
+
+        public TextView getTextViewProbability() {
+            return textViewProbability;
+        }
+
+        public TextView getTextViewScore() {
+            return textViewScore;
         }
     }
 }

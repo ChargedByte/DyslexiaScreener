@@ -21,5 +21,7 @@
 
     <!-- History Activity -->
     <string name="history_header">History</string>
-    <string name="age_message">%d year old</string>
+    <string name="age_message">%dyo</string>
+    <string name="score_message">Score: %s</string>
+    <string name="probability_message">Probability: %s</string>
 </resources>

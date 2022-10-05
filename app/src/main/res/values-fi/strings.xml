@@ -22,5 +22,7 @@
 
     <!-- History Activity -->
     <string name="history_header">Historia</string>
-    <string name="age_message">%d vuotta vanha</string>
+    <string name="age_message">%dv</string>
+    <string name="score_message">Pisteet: %s</string>
+    <string name="probability_message">Todennäköisyys: %s</string>
 </resources>

@@ -5,23 +5,39 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="0dp"
+        android:id="@+id/textViewProbability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:hint="Probability"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameAndAge"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNameAndAge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Name"
+        android:layout_marginTop="8dp"
+        android:hint="Name, Age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewAge"
-        android:layout_width="0dp"
+        android:id="@+id/textViewDateTime"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Age"
-        app:layout_constraintEnd_toEndOf="@+id/textViewName"
-        app:layout_constraintStart_toStartOf="@+id/textViewName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        android:layout_marginTop="4dp"
+        android:hint="DateTime"
+        app:layout_constraintStart_toStartOf="@+id/textViewNameAndAge"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameAndAge" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Score"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewDateTime"
+        app:layout_constraintStart_toStartOf="@+id/textViewProbability" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
