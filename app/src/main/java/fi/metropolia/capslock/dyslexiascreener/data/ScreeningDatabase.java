@@ -19,9 +19,9 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 @Database(entities = {Test.class}, version = 1, exportSchema = false)
 @TypeConverters({OffsetDateTimeConverter.class})
 public abstract class ScreeningDatabase extends RoomDatabase {
-    private static ScreeningDatabase instance;
+    private static volatile ScreeningDatabase instance;
 
-    public static ScreeningDatabase getDatabase(Context context) {
+    public static synchronized ScreeningDatabase getInstance(Context context) {
         if (instance == null)
             instance = Room.databaseBuilder(context, ScreeningDatabase.class, "screening_database").build();
         return instance;
@@ -30,7 +30,7 @@ public abstract class ScreeningDatabase extends RoomDatabase {
     /**
      * Returns the Data Access Object (DAO) for accessing {@link Test} entities in the database.
      *
-     * @return the {@link TestDao} of this database
+     * @return A {@link TestDao} for this database
      */
     public abstract TestDao testDao();
 }

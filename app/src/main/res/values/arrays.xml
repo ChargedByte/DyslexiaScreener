@@ -9,4 +9,11 @@
         <item>English</item>
         <item>Finnish</item>
     </string-array>
+
+    <string-array name="probabilities">
+        <item>Unknown</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 </resources>
