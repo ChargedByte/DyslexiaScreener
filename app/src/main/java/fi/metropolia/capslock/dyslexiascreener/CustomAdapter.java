@@ -8,33 +8,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * Adapter for letter and word selection test.
+ * @author Joel Tikkanen
+ */
 
 public class CustomAdapter extends BaseAdapter {
     private Context context;
     private Resources resources;
-    private ArrayList<String> letters;
+    private List<String> items;
+    private String correct_answer;
     private int correct = 0;
-    public static final int all_correct = 14;
+    private int maxCorrect;
 
 
-    public CustomAdapter(Context context, ArrayList<String> letters) {
-        this.letters = letters;
+    public CustomAdapter(Context context, List<String> letters, String correct_answer, int maxCorrect) {
+        this.items = letters;
         this.context = context;
         this.resources = context.getResources();
+        this.correct_answer = correct_answer;
+        this.maxCorrect = maxCorrect;
+
     }
 
     @Override
     public int getCount() {
-        return letters.size();
+        return items.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return letters.get(position);
+        return items.get(position);
     }
 
     @Override
@@ -44,6 +52,10 @@ public class CustomAdapter extends BaseAdapter {
 
     public int getCorrect() {
         return correct;
+    }
+
+    public String getCorrect_answer() {
+        return correct_answer;
     }
 
     @Override
@@ -60,7 +72,7 @@ public class CustomAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.singleitem_layout, parent, false);
 
             Button letterButton = (Button) gridView.findViewById(R.id.grid_item_button);
-            letterButton.setText(letters.get(position));
+            letterButton.setText(items.get(position));
 
             letterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,11 +82,11 @@ public class CustomAdapter extends BaseAdapter {
 
                     Log.d("letterClick", String.valueOf(letterButton.getText()));
 
-                    if (letterButton.getText().equals("b")){
+                    if (letterButton.getText().equals(correct_answer)){
                         correct++;
-                        Log.d("letterClick", Integer.toString(correct));
+                        Log.d("letterClick", "oikein");
                     }
-                    if (correct == all_correct) {
+                    if (correct == maxCorrect) {
                         Log.d("letterClick", "kaikki oikein");
 
                     }

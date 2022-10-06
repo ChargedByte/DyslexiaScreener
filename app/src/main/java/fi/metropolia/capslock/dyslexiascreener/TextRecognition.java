@@ -13,14 +13,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Random;
 
+/** Activity for multiple text recognition tests.
+ *
+ * @author Joel Tikkanen
+ */
 public class TextRecognition extends AppCompatActivity {
 
     private static final Random random = new Random();
     private static final int totalTests = 2;
     private int testPoints = 0;
     private int testAnswered = 0;
-
-
 
     ImageView textImage;
     EditText testInput;
