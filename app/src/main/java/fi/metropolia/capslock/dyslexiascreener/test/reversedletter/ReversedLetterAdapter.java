@@ -1,4 +1,4 @@
-package fi.metropolia.capslock.dyslexiascreener.Reversedlettertest;
+package fi.metropolia.capslock.dyslexiascreener.test.reversedletter;
 
 import android.content.Context;
 import android.view.View;
@@ -6,17 +6,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
 import fi.metropolia.capslock.dyslexiascreener.R;
 
 
-public class ReversedLetterAdapter extends BaseAdapter{
+public class ReversedLetterAdapter extends BaseAdapter {
 
 
     private final Context mContext;
-    public Integer[] imageIDs = {R.drawable.pletter, R.drawable.tletter,R.drawable.reversejletter, R.drawable.qletter,R.drawable.sletter,
-        R.drawable.reversehletter, R.drawable.jletter,R.drawable.reversefletter, R.drawable.fletter, R.drawable.zletter,
-        R.drawable.eletter, R.drawable.cletter, R.drawable.bletter, R.drawable.hletter,R.drawable.reversecletter,
-        R.drawable.reverseeletter,R.drawable.reversejletter,R.drawable.reversefletter,R.drawable.reversehletter,R.drawable.sletter,};
+    public Integer[] imageIDs = {R.drawable.pletter, R.drawable.tletter, R.drawable.reversejletter, R.drawable.qletter, R.drawable.sletter,
+        R.drawable.reversehletter, R.drawable.jletter, R.drawable.reversefletter, R.drawable.fletter, R.drawable.zletter,
+        R.drawable.eletter, R.drawable.cletter, R.drawable.bletter, R.drawable.hletter, R.drawable.reversecletter,
+        R.drawable.reverseeletter, R.drawable.reversejletter, R.drawable.reversefletter, R.drawable.reversehletter, R.drawable.sletter,};
 
 
     public ReversedLetterAdapter(Context c) {

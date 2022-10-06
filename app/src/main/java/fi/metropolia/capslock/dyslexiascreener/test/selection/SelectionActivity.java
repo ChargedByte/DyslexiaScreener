@@ -1,16 +1,17 @@
-package fi.metropolia.capslock.dyslexiascreener;
-
-import androidx.appcompat.app.AppCompatActivity;
+package fi.metropolia.capslock.dyslexiascreener.test.selection;
 
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
-/** Activity for letter and word selection test items.
+import java.util.Arrays;
+
+import fi.metropolia.capslock.dyslexiascreener.R;
+
+/**
+ * Activity for letter and word selection test items.
  *
  * @author Joel Tikkanen
  * @author Peetu Saarinen
@@ -19,10 +20,9 @@ import java.util.List;
 public class SelectionActivity extends AppCompatActivity {
     public static final String EXTRA_ITEMS = "fi.metropolia.capslock.dyslexiascreener.SELECTION_ITEMS";
     public static final String EXTRA_CORRECT = "fi.metropolia.capslock.dyslexiascreener.SELECTION_CORRECT";
-    private int maxCorrect;
-
     GridView letterGrid;
     TextView itemCaption;
+    private int maxCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +34,14 @@ public class SelectionActivity extends AppCompatActivity {
         itemCaption = (TextView) findViewById(R.id.itemCaption);
 
         //Adjusting the adapter for word selection
-        if (getIntent().getStringExtra(EXTRA_CORRECT).equals("oli")){
+        if (getIntent().getStringExtra(EXTRA_CORRECT).equals("oli")) {
             itemCaption.setText(itemCaption.getText() + " oli");
             letterGrid.setNumColumns(6);
             maxCorrect = 6;
         }
 
         //Adjusting the adapter for letter selection
-        if (getIntent().getStringExtra(EXTRA_CORRECT).equals("b")){
+        if (getIntent().getStringExtra(EXTRA_CORRECT).equals("b")) {
             itemCaption.setText(itemCaption.getText() + " b");
             letterGrid.setNumColumns(13);
             maxCorrect = 14;

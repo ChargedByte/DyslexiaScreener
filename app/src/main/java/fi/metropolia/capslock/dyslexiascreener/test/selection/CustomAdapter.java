@@ -1,4 +1,4 @@
-package fi.metropolia.capslock.dyslexiascreener;
+package fi.metropolia.capslock.dyslexiascreener.test.selection;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,9 +11,11 @@ import android.widget.Button;
 
 import java.util.List;
 
+import fi.metropolia.capslock.dyslexiascreener.R;
+
 /**
- *
  * Adapter for letter and word selection test.
+ *
  * @author Joel Tikkanen
  */
 
@@ -82,7 +84,7 @@ public class CustomAdapter extends BaseAdapter {
 
                     Log.d("letterClick", String.valueOf(letterButton.getText()));
 
-                    if (letterButton.getText().equals(correct_answer)){
+                    if (letterButton.getText().equals(correct_answer)) {
                         correct++;
                         Log.d("letterClick", "oikein");
                     }
@@ -92,9 +94,9 @@ public class CustomAdapter extends BaseAdapter {
                     }
                 }
             });
-        }
-        else {
-            gridView = (View) convertView;;
+        } else {
+            gridView = (View) convertView;
+            ;
         }
         return gridView;
     }

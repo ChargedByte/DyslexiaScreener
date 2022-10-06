@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
@@ -30,8 +30,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      * Constructs a {@link HistoryAdapter} class with an empty <code>items</code> list.
      */
     public HistoryAdapter() {
-        //this.items = Collections.emptyList();
-        this.items = Arrays.asList(new Test("Test Name 1", 8), new Test("Test Name 2", 13), new Test("Test Name 3", 10));
+        this.items = Collections.emptyList();
     }
 
     public void setItems(List<Test> items) {

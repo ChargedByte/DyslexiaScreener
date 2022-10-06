@@ -1,19 +1,20 @@
-package fi.metropolia.capslock.dyslexiascreener;
+package fi.metropolia.capslock.dyslexiascreener.test.recognition;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Random;
 
-/** Activity for multiple text recognition tests.
+import fi.metropolia.capslock.dyslexiascreener.R;
+
+/**
+ * Activity for multiple text recognition tests.
  *
  * @author Joel Tikkanen
  */
@@ -21,15 +22,12 @@ public class TextRecognition extends AppCompatActivity {
 
     private static final Random random = new Random();
     private static final int totalTests = 2;
-    private int testPoints = 0;
-    private int testAnswered = 0;
-
     ImageView textImage;
     EditText testInput;
     FloatingActionButton nextButton;
-
-
     TextRecognitionImages recognitionClass = new TextRecognitionImages();
+    private int testPoints = 0;
+    private int testAnswered = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +43,19 @@ public class TextRecognition extends AppCompatActivity {
         textImage.setImageResource(recognitionClass.getImageIDs()[selectedIndex]);
 
 
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               testAnswered++;
+                testAnswered++;
                 if (testAnswered < totalTests) {
                     recognitionClass.removeImageID(selectedIndex);
                     recognitionClass.removeImageText(selectedIndex);
-                    int selectedIndex = random.nextInt(4-testAnswered);
+                    int selectedIndex = random.nextInt(4 - testAnswered);
                     textImage.setImageResource(recognitionClass.getImageIDs()[selectedIndex]);
                     testInput.setText("");
 
                 }
-                if (testInput.getText().toString().equals(recognitionClass.getImageTexts()[selectedIndex])){
+                if (testInput.getText().toString().equals(recognitionClass.getImageTexts()[selectedIndex])) {
                     //correct answer
                     testPoints++;
                 }
@@ -74,15 +71,7 @@ public class TextRecognition extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
     }
-
 
 
 }

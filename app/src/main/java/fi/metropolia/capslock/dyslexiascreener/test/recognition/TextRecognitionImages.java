@@ -1,6 +1,10 @@
-package fi.metropolia.capslock.dyslexiascreener;
+package fi.metropolia.capslock.dyslexiascreener.test.recognition;
 
-/** Class for selected amount of text recognition tests.
+import fi.metropolia.capslock.dyslexiascreener.R;
+
+/**
+ * Class for selected amount of text recognition tests.
+ *
  * @author Joel Tikkanen
  */
 
@@ -22,10 +26,10 @@ public class TextRecognitionImages {
      * @param removeIndex
      */
     public void removeImageID(int removeIndex) {
-        int[] newImageIDs = {0,0,0,0};
+        int[] newImageIDs = {0, 0, 0, 0};
 
-        for (int i = 0;i<imageIDs.length;i++){
-            if (i != removeIndex){
+        for (int i = 0; i < imageIDs.length; i++) {
+            if (i != removeIndex) {
                 newImageIDs[i] = imageIDs[i];
             }
         }
@@ -34,12 +38,13 @@ public class TextRecognitionImages {
 
     /**
      * Removes image text from array.
+     *
      * @param removeIndex
      */
-    public void removeImageText(int removeIndex){
-        String[] newImageTexts = {"","","",""};
-        for (int i = 0;i<imageIDs.length;i++){
-            if (i != removeIndex){
+    public void removeImageText(int removeIndex) {
+        String[] newImageTexts = {"", "", "", ""};
+        for (int i = 0; i < imageIDs.length; i++) {
+            if (i != removeIndex) {
                 newImageTexts[i] = imageTexts[i];
             }
         }

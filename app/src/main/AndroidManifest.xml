@@ -13,6 +13,13 @@
         android:theme="@style/Theme.DyslexiaScreener"
         tools:targetApi="31">
         <activity
+            android:name=".test.TestActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".history.HistoryActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
@@ -29,14 +36,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TextRecognition"
+            android:name=".test.recognition.TextRecognition"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectionActivity"
+            android:name=".test.selection.SelectionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

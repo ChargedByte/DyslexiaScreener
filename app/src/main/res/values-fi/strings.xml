@@ -14,7 +14,7 @@
     <string name="timer_enabled_description">Aseta aikaraja kokeelle</string>
     <string name="time_limit_header">Aikaraja</string>
     <string name="select_time_description">%d minuuttia</string>
-    <string name="question_count_header">Kysymysten määrä</string>
+    <string name="exercises_number_header">Kysymysten määrä</string>
     <string name="select_question_count_description">%d kysymystä</string>
     <string name="language_header">Kieli</string>
     <string name="restart_button">Käynnistä</string>

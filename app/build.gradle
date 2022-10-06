@@ -89,6 +89,9 @@ dependencies {
 
     // Android Preferences
     implementation 'androidx.preference:preference:1.2.0'
+
+    // Android Fragments
+    implementation 'androidx.fragment:fragment:1.5.3'
 }
 
 configurations {
