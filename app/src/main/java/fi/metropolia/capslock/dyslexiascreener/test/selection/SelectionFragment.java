@@ -30,6 +30,7 @@ public class SelectionFragment extends ExerciseFragment {
     public SelectionFragment() {
     }
 
+    @NonNull
     public static SelectionFragment newInstance(String correctAnswer, String items) {
         SelectionFragment fragment = new SelectionFragment();
         Bundle args = new Bundle();
@@ -68,6 +69,8 @@ public class SelectionFragment extends ExerciseFragment {
         FloatingActionButton floatingActionButtonNext = view.findViewById(R.id.floatingActionButtonNext);
         floatingActionButtonNext.setOnClickListener(v -> {
             viewModel.getCompletedExercise().postValue(Pair.create(0, 0));
+
+            // TODO: Count score
         });
     }
 }

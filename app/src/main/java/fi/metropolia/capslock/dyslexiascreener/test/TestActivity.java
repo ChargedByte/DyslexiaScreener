@@ -13,6 +13,8 @@ import java.util.ArrayDeque;
 import fi.metropolia.capslock.dyslexiascreener.MainActivity;
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
+import fi.metropolia.capslock.dyslexiascreener.test.recognition.TextRecognitionFragment;
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 
 /**
@@ -46,6 +48,8 @@ public class TestActivity extends AppCompatActivity {
         ArrayDeque<ExerciseFragment> fragments = new ArrayDeque<>();
         fragments.add(SelectionFragment.newInstance("b", "b d b q d b p d b b q q b p d q b d d b b d p q b d q b d b p p d b p b d p b"));
         fragments.add(SelectionFragment.newInstance("was", "was raw saw way was saw saw was way saw win war was why saw was saw was"));
+        fragments.add(ReverseLettersFragment.newInstance());
+        fragments.add(TextRecognitionFragment.newInstance());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -69,7 +73,7 @@ public class TestActivity extends AppCompatActivity {
                     .replace(R.id.fragmentContainerViewExercise, nextFragment)
                     .commit();
             }
-            
+
             // TODO: End
         });
     }

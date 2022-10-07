@@ -50,4 +50,7 @@
     <!-- Selection Fragment -->
     <string name="selection_instructions_word">Select all \'%s\' words.</string>
     <string name="selection_instructions_letter">Select all \'%s\' letters.</string>
+
+    <!-- Reverse Letters Fragment -->
+    <string name="reverse_letters_instructions">Select all letters that are reversed.</string>
 </resources>

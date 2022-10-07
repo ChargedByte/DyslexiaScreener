@@ -17,9 +17,9 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
  * @author Peetu Saarinen
  */
 public class HistoryViewModel extends AndroidViewModel {
-    private ScreeningDatabase database;
+    private final ScreeningDatabase database;
 
-    private LiveData<List<Test>> testListLiveData;
+    private final LiveData<List<Test>> testListLiveData;
 
     public HistoryViewModel(@NonNull Application application) {
         super(application);

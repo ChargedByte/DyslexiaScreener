@@ -1,4 +1,4 @@
-package fi.metropolia.capslock.dyslexiascreener.test.reversedletter;
+package fi.metropolia.capslock.dyslexiascreener.test.reverse;
 
 import android.content.Context;
 import android.view.View;
@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import fi.metropolia.capslock.dyslexiascreener.R;
 
 
-public class ReversedLetterAdapter extends BaseAdapter {
+/**
+ * @author Joonas Jouttijärvi
+ */
+public class ReverseLettersAdapter extends BaseAdapter {
 
 
     private final Context mContext;
@@ -20,13 +23,12 @@ public class ReversedLetterAdapter extends BaseAdapter {
         R.drawable.reverseeletter, R.drawable.reversejletter, R.drawable.reversefletter, R.drawable.reversehletter, R.drawable.sletter,};
 
 
-    public ReversedLetterAdapter(Context c) {
+    public ReverseLettersAdapter(Context c) {
         mContext = c;
     }
 
     public int getCount() {
         return imageIDs.length;
-
     }
 
     public Object getItem(int position) {

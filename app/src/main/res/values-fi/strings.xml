@@ -46,4 +46,7 @@
     <!-- Selection Fragment -->
     <string name="selection_instructions_word">Valitse kaikki \'%s\' sanat.</string>
     <string name="selection_instructions_letter">Valitse kaikki \'%s\' kirjaimet.</string>
+
+    <!-- Reverse Letters Fragment -->
+    <string name="reverse_letters_instructions">Valitse kaikki kirjaimet jotka ovat väärinpäin.</string>
 </resources>
