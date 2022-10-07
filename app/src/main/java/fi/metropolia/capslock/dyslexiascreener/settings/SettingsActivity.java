@@ -19,11 +19,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ActionBar supportActionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
 
-        if (supportActionBar != null) {
-            supportActionBar.setTitle(R.string.settings_header);
-        }
+        if (actionBar != null)
+            actionBar.setTitle(R.string.settings_header);
 
         getSupportFragmentManager()
             .beginTransaction()

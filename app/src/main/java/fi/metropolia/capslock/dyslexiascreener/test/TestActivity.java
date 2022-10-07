@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayDeque;
 
-import fi.metropolia.capslock.dyslexiascreener.MainActivity;
 import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 import fi.metropolia.capslock.dyslexiascreener.test.recognition.TextRecognitionFragment;
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
@@ -40,8 +40,8 @@ public class TestActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        String studentName = intent.getStringExtra(MainActivity.EXTRA_STUDENT_NAME);
-        int studentAge = intent.getIntExtra(MainActivity.EXTRA_STUDENT_AGE, -1);
+        String studentName = intent.getStringExtra(SharedConstants.EXTRA_STUDENT_NAME);
+        int studentAge = intent.getIntExtra(SharedConstants.EXTRA_STUDENT_AGE, -1);
 
         Test test = new Test(studentName, studentAge);
 
@@ -72,9 +72,14 @@ public class TestActivity extends AppCompatActivity {
                     .setReorderingAllowed(true)
                     .replace(R.id.fragmentContainerViewExercise, nextFragment)
                     .commit();
+                return;
             }
 
-            // TODO: End
+            // TODO: Save test to database
+
+            Intent newIntent = new Intent(this, TestEndActivity.class);
+            newIntent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, test.getStudentName());
+            startActivity(newIntent);
         });
     }
 

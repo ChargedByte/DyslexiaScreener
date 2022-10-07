@@ -23,9 +23,6 @@ import fi.metropolia.capslock.dyslexiascreener.test.TestActivity;
  * @author Peetu Saarinen
  */
 public class MainActivity extends BaseActivity {
-    public static final String EXTRA_STUDENT_NAME = "fi.metropolia.capslock.dyslexiascreener.STUDENT_NAME";
-    public static final String EXTRA_STUDENT_AGE = "fi.metropolia.capslock.dyslexiascreener.STUDENT_AGE";
-
     private EditText editTextName;
     private EditText editTextAge;
     private FloatingActionButton floatingActionButtonStartTest;
@@ -36,10 +33,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
+        if (actionBar != null)
             actionBar.setTitle(R.string.app_name);
-        }
 
         editTextName = findViewById(R.id.editTextName);
         editTextAge = findViewById(R.id.editTextAge);
@@ -54,8 +49,8 @@ public class MainActivity extends BaseActivity {
                 // TODO: Confirm dialog
 
                 Intent intent = new Intent(this, TestActivity.class);
-                intent.putExtra(EXTRA_STUDENT_NAME, studentName);
-                intent.putExtra(EXTRA_STUDENT_AGE, studentAge);
+                intent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, studentName);
+                intent.putExtra(SharedConstants.EXTRA_STUDENT_AGE, studentAge);
                 startActivity(intent);
             }
         });

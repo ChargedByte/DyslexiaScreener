@@ -49,4 +49,12 @@
 
     <!-- Reverse Letters Fragment -->
     <string name="reverse_letters_instructions">Valitse kaikki kirjaimet jotka ovat väärinpäin.</string>
+
+    <!-- Text Recognition Fragment -->
+    <string name="text_recognition_instructions">Kirjoita sana jonka näet kuvassa tekstikenttään.</string>
+
+    <!-- Test End Activity -->
+    <string name="thank_you_message">Kiitos, %s</string>
+    <string name="saved_message">Koe suorituksesi on tallennettu onnistuneesti.</string>
+    <string name="return_home_button">Palaa Kotiin</string>
 </resources>

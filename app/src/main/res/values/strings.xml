@@ -53,4 +53,12 @@
 
     <!-- Reverse Letters Fragment -->
     <string name="reverse_letters_instructions">Select all letters that are reversed.</string>
+
+    <!-- Text Recognition Fragment -->
+    <string name="text_recognition_instructions">Type the word you see in the image to the text field.</string>
+
+    <!-- Test End Activity -->
+    <string name="thank_you_message">Thank you, %s</string>
+    <string name="saved_message">Your test has been successfully saved.</string>
+    <string name="return_home_button">Back Home</string>
 </resources>

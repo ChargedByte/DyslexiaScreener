@@ -29,10 +29,8 @@ public class HistoryActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
 
         ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
+        if (actionBar != null)
             actionBar.setTitle(R.string.history_header);
-        }
 
         recyclerViewHistory = findViewById(R.id.recyclerViewHistory);
 
