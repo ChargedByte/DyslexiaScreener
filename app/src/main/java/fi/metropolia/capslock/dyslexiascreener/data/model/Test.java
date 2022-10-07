@@ -91,12 +91,30 @@ public class Test {
         this.studentPoints = studentPoints;
     }
 
+    /**
+     * Increases student's points with the provided value.
+     *
+     * @param value A <code>int</code> to add to the student's points
+     */
+    public void addStudentPoints(int value) {
+        this.studentPoints += value;
+    }
+
     public int getAvailablePoints() {
         return availablePoints;
     }
 
     public void setAvailablePoints(int availablePoints) {
         this.availablePoints = availablePoints;
+    }
+
+    /**
+     * Increases available points with the provided value.
+     *
+     * @param value A <code>int</code> to add to the available points
+     */
+    public void addAvailablePoints(int value) {
+        this.availablePoints += value;
     }
 
     @NonNull

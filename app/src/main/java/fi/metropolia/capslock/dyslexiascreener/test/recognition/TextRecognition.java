@@ -7,8 +7,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Random;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
@@ -24,7 +22,6 @@ public class TextRecognition extends AppCompatActivity {
     private static final int totalTests = 2;
     ImageView textImage;
     EditText testInput;
-    FloatingActionButton nextButton;
     TextRecognitionImages recognitionClass = new TextRecognitionImages();
     private int testPoints = 0;
     private int testAnswered = 0;
@@ -35,40 +32,36 @@ public class TextRecognition extends AppCompatActivity {
         setContentView(R.layout.activity_text_recognition);
 
 
-        textImage = (ImageView) findViewById(R.id.textImage);
-        testInput = (EditText) findViewById(R.id.editTextInput);
-        nextButton = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
+        textImage = findViewById(R.id.textImage);
+        testInput = findViewById(R.id.editTextInput);
 
         int selectedIndex = random.nextInt(4);
         textImage.setImageResource(recognitionClass.getImageIDs()[selectedIndex]);
 
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testAnswered++;
-                if (testAnswered < totalTests) {
-                    recognitionClass.removeImageID(selectedIndex);
-                    recognitionClass.removeImageText(selectedIndex);
-                    int selectedIndex = random.nextInt(4 - testAnswered);
-                    textImage.setImageResource(recognitionClass.getImageIDs()[selectedIndex]);
-                    testInput.setText("");
-
-                }
-                if (testInput.getText().toString().equals(recognitionClass.getImageTexts()[selectedIndex])) {
-                    //correct answer
-                    testPoints++;
-                }
-
-
-                if (testAnswered == totalTests) {
-                    //intent to next test item
-
-                }
-
-
-            }
-        });
+//        nextButton.setOnClickListener((View.OnClickListener) v -> {
+//            testAnswered++;
+//            if (testAnswered < totalTests) {
+//                recognitionClass.removeImageID(selectedIndex);
+//                recognitionClass.removeImageText(selectedIndex);
+//                int selectedIndex1 = random.nextInt(4 - testAnswered);
+//                textImage.setImageResource(recognitionClass.getImageIDs()[selectedIndex1]);
+//                testInput.setText("");
+//
+//            }
+//            if (testInput.getText().toString().equals(recognitionClass.getImageTexts()[selectedIndex])) {
+//                //correct answer
+//                testPoints++;
+//            }
+//
+//
+//            if (testAnswered == totalTests) {
+//                //intent to next test item
+//
+//            }
+//
+//
+//        });
 
 
     }

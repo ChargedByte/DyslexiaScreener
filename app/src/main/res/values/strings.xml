@@ -5,6 +5,11 @@
     <string name="name_header">Name</string>
     <string name="age_header">Age</string>
 
+    <string name="error_empty_name">You must provide a name.</string>
+    <string name="error_empty_age">You must provide a age.</string>
+    <string name="error_invalid_age">Input is not a number.</string>
+    <string name="error_negative_age">Age can\'t be a negative number.</string>
+
     <!-- Settings Activity -->
     <string name="settings_header">Settings</string>
     <string name="screening_header">Screening</string>
@@ -19,9 +24,30 @@
     <string name="restart_button">Restart</string>
     <string name="restart_message">Restart to apply the language?</string>
 
+    <string-array name="supportedLanguageCodes" translatable="false">
+        <item>en</item>
+        <item>fi</item>
+    </string-array>
+
+    <string-array name="supportedLanguages">
+        <item>English</item>
+        <item>Finnish</item>
+    </string-array>
+
+    <string-array name="probabilities">
+        <item>Unknown</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
     <!-- History Activity -->
     <string name="history_header">History</string>
     <string name="age_message">%dyo</string>
     <string name="score_message">Score: %s</string>
     <string name="probability_message">Probability: %s</string>
+
+    <!-- Selection Fragment -->
+    <string name="selection_instructions_word">Select all \'%s\' words.</string>
+    <string name="selection_instructions_letter">Select all \'%s\' letters.</string>
 </resources>

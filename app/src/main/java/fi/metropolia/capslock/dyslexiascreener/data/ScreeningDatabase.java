@@ -24,7 +24,8 @@ public abstract class ScreeningDatabase extends RoomDatabase {
 
     public static synchronized ScreeningDatabase getInstance(Context context) {
         if (instance == null)
-            instance = Room.databaseBuilder(context, ScreeningDatabase.class, SharedConstants.DATABASE_NAME).build();
+            instance = Room.databaseBuilder(context, ScreeningDatabase.class, SharedConstants.DATABASE_NAME)
+                .allowMainThreadQueries().build();
         return instance;
     }
 

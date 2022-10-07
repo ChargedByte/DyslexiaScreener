@@ -6,6 +6,11 @@
     <string name="name_header">Nimi</string>
     <string name="age_header">Ikä</string>
 
+    <string name="error_empty_name">Sinun täytyy täyttää nimi.</string>
+    <string name="error_empty_age">Sinun täytyy täyttää ikä.</string>
+    <string name="error_invalid_age">Syöte ei ole numero.</string>
+    <string name="error_negative_age">Ikä ei voi olla negatiivinen numero.</string>
+
     <!-- Settings Activity -->
     <string name="settings_header">Asetukset</string>
     <string name="screening_header">Seulonta</string>
@@ -20,9 +25,25 @@
     <string name="restart_button">Käynnistä</string>
     <string name="restart_message">Käynnistetäänkö uudelleen?</string>
 
+    <string-array name="supportedLanguages">
+        <item>Englanti</item>
+        <item>Suomi</item>
+    </string-array>
+
+    <string-array name="probabilities">
+        <item>Tuntematon</item>
+        <item>Matala</item>
+        <item>Keskisuuri</item>
+        <item>Korkea</item>
+    </string-array>
+
     <!-- History Activity -->
     <string name="history_header">Historia</string>
     <string name="age_message">%dv</string>
     <string name="score_message">Pisteet: %s</string>
     <string name="probability_message">Todennäköisyys: %s</string>
+
+    <!-- Selection Fragment -->
+    <string name="selection_instructions_word">Valitse kaikki \'%s\' sanat.</string>
+    <string name="selection_instructions_letter">Valitse kaikki \'%s\' kirjaimet.</string>
 </resources>
