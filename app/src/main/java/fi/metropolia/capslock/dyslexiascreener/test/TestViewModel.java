@@ -1,21 +1,22 @@
 package fi.metropolia.capslock.dyslexiascreener.test;
 
 import android.app.Application;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import fi.metropolia.capslock.dyslexiascreener.data.ScreeningDatabase;
+import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
- * ViewModel-class for the {@link TestActivity}.
+ * ViewModel for the {@link TestActivity}.
  *
  * @author Peetu Saarinen
  */
 public class TestViewModel extends AndroidViewModel {
-    private final MutableLiveData<Pair<Integer, Integer>> completedExercise = new MutableLiveData<>();
+    private final MutableLiveData<Object> exerciseCompleted = new MutableLiveData<>();
+    private final MutableLiveData<Object> timerExpired = new MutableLiveData<>();
 
     private final ScreeningDatabase database;
 
@@ -24,7 +25,20 @@ public class TestViewModel extends AndroidViewModel {
         database = ScreeningDatabase.getInstance(application);
     }
 
-    public MutableLiveData<Pair<Integer, Integer>> getCompletedExercise() {
-        return completedExercise;
+    public MutableLiveData<Object> getExerciseCompleted() {
+        return exerciseCompleted;
+    }
+
+    public MutableLiveData<Object> getTimerExpired() {
+        return timerExpired;
+    }
+
+    /**
+     * Saves the provided {@link Test} entity to the database.
+     *
+     * @param test A {@link Test} entity to be saved
+     */
+    public void saveTest(Test test) {
+        database.testDao().insert(test);
     }
 }

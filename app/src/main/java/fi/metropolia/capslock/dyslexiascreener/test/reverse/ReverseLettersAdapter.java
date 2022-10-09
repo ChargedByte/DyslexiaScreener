@@ -1,59 +1,98 @@
 package fi.metropolia.capslock.dyslexiascreener.test.reverse;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemDetails;
 
 /**
+ * Extension to {@link RecyclerView.Adapter} for displaying items in the {@link ReverseLettersFragment}.
+ *
  * @author Joonas Jouttijärvi
  */
-public class ReverseLettersAdapter extends BaseAdapter {
+public class ReverseLettersAdapter extends RecyclerView.Adapter<ReverseLettersAdapter.ViewHolder> {
+    private final List<ReverseLetter> items;
 
+    private SelectionTracker<Long> selectionTracker;
 
-    private final Context mContext;
-    public Integer[] imageIDs = {R.drawable.pletter, R.drawable.tletter, R.drawable.reversejletter, R.drawable.qletter, R.drawable.sletter,
-        R.drawable.reversehletter, R.drawable.jletter, R.drawable.reversefletter, R.drawable.fletter, R.drawable.zletter,
-        R.drawable.eletter, R.drawable.cletter, R.drawable.bletter, R.drawable.hletter, R.drawable.reversecletter,
-        R.drawable.reverseeletter, R.drawable.reversejletter, R.drawable.reversefletter, R.drawable.reversehletter, R.drawable.sletter,};
-
-
-    public ReverseLettersAdapter(Context c) {
-        mContext = c;
+    public ReverseLettersAdapter(List<ReverseLetter> items) {
+        this.items = items;
+        setHasStableIds(true);
     }
 
-    public int getCount() {
-        return imageIDs.length;
+    public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
+        this.selectionTracker = selectionTracker;
     }
 
-    public Object getItem(int position) {
-        return null;
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.item_reverse_letter, parent, false));
     }
 
+    @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView mImageView;
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        int imageId = items.get(position).getResId();
 
-        if (convertView == null) {
-            mImageView = new ImageView(mContext);
-            mImageView.setLayoutParams(new GridView.LayoutParams(130, 130));
-            mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            mImageView.setPadding(16, 16, 16, 16);
+        holder.getImageView().setImageResource(imageId);
 
-        } else {
-            mImageView = (ImageView) convertView;
+        if (selectionTracker != null) {
+            if (selectionTracker.isSelected((long) position)) {
+                selectionTracker.select((long) position);
+                holder.getImageView().setBackgroundResource(R.drawable.background_selection_item);
+            } else {
+                selectionTracker.deselect((long) position);
+                holder.getImageView().setBackgroundResource(android.R.color.transparent);
+            }
         }
-        mImageView.setImageResource(imageIDs[position]);
+    }
 
-        return mImageView;
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    /**
+     * Extension to {@link RecyclerView.ViewHolder} that provides {@link ReverseLettersAdapter} with the elements in the item {@link View}.
+     *
+     * @author Joonas Jouttijärvi
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        private final ImageView imageView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            context = itemView.getContext();
+            imageView = (ImageView) itemView.getRootView();
+        }
+
+        public Context getContext() {
+            return context;
+        }
+
+        public ImageView getImageView() {
+            return imageView;
+        }
+
+        public ReverseLetterItemDetails getItemDetails() {
+            return new ReverseLetterItemDetails(getAdapterPosition());
+        }
     }
 }
-

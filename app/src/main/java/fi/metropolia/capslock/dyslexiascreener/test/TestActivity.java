@@ -3,7 +3,6 @@ package fi.metropolia.capslock.dyslexiascreener.test;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,7 +17,7 @@ import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragme
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 
 /**
- * Activity-class for handling the {@link ExerciseFragment}s and tracking the test process.
+ * Activity for handling the {@link ExerciseFragment}s and the test process.
  *
  * @author Peetu Saarinen
  */
@@ -33,12 +32,6 @@ public class TestActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(TestViewModel.class);
 
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-
-        }
-
         Intent intent = getIntent();
         String studentName = intent.getStringExtra(SharedConstants.EXTRA_STUDENT_NAME);
         int studentAge = intent.getIntExtra(SharedConstants.EXTRA_STUDENT_AGE, -1);
@@ -46,8 +39,8 @@ public class TestActivity extends AppCompatActivity {
         Test test = new Test(studentName, studentAge);
 
         ArrayDeque<ExerciseFragment> fragments = new ArrayDeque<>();
-        fragments.add(SelectionFragment.newInstance("b", "b d b q d b p d b b q q b p d q b d d b b d p q b d q b d b p p d b p b d p b"));
-        fragments.add(SelectionFragment.newInstance("was", "was raw saw way was saw saw was way saw win war was why saw was saw was"));
+        fragments.add(SelectionFragment.newInstance(R.array.letterSet1));
+        fragments.add(SelectionFragment.newInstance(R.array.wordSet1));
         fragments.add(ReverseLettersFragment.newInstance());
         fragments.add(TextRecognitionFragment.newInstance());
 
@@ -61,10 +54,7 @@ public class TestActivity extends AppCompatActivity {
                 .commit();
         }
 
-        viewModel.getCompletedExercise().observe(this, pair -> {
-            test.addStudentPoints(pair.first);
-            test.addAvailablePoints(pair.second);
-
+        viewModel.getExerciseCompleted().observe(this, obj -> {
             ExerciseFragment nextFragment = fragments.pollFirst();
             if (nextFragment != null) {
                 fragmentManager
@@ -75,7 +65,7 @@ public class TestActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO: Save test to database
+            viewModel.saveTest(test);
 
             Intent newIntent = new Intent(this, TestEndActivity.class);
             newIntent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, test.getStudentName());

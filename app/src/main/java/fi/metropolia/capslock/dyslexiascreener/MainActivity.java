@@ -16,13 +16,16 @@ import fi.metropolia.capslock.dyslexiascreener.settings.SettingsActivity;
 import fi.metropolia.capslock.dyslexiascreener.test.TestActivity;
 
 /**
- * Activity-class loaded as the first activity when the application starts.
+ * Activity loaded first when the application starts.
  *
  * @author Joel Tikkanen
  * @author Joonas Jouttijärvi
  * @author Peetu Saarinen
  */
 public class MainActivity extends BaseActivity {
+    private static final String IS_NAME = "text_name";
+    private static final String IS_AGE = "text_age";
+
     private EditText editTextName;
     private EditText editTextAge;
     private FloatingActionButton floatingActionButtonStartTest;
@@ -54,6 +57,30 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        if (savedInstanceState != null) {
+            String nameText = savedInstanceState.getString(IS_NAME);
+            String ageText = savedInstanceState.getString(IS_NAME);
+
+            if (nameText != null)
+                editTextName.setText(nameText);
+
+            if (ageText != null)
+                editTextAge.setText(ageText);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String nameText = editTextName.getText().toString();
+        String ageText = editTextAge.getText().toString();
+
+        if (!nameText.isBlank())
+            outState.putString(IS_NAME, nameText);
+
+        if (!ageText.isBlank())
+            outState.putString(IS_AGE, ageText);
     }
 
     @Override
@@ -81,22 +108,22 @@ public class MainActivity extends BaseActivity {
      * @return <code>true</code> if all checks passed, otherwise <code>false</code>
      */
     private boolean validateInputs() {
-        String studentNameRaw = editTextName.getText().toString();
-        String studentAgeRaw = editTextAge.getText().toString();
+        String nameText = editTextName.getText().toString();
+        String ageText = editTextAge.getText().toString();
 
-        if (studentNameRaw.isBlank()) {
+        if (nameText.isBlank()) {
             editTextName.setError(getResources().getString(R.string.error_empty_name));
             return false;
         }
 
-        if (studentAgeRaw.isBlank()) {
+        if (ageText.isBlank()) {
             editTextAge.setError(getResources().getString(R.string.error_empty_age));
             return false;
         }
 
         int studentAge;
         try {
-            studentAge = Integer.parseInt(studentAgeRaw);
+            studentAge = Integer.parseInt(ageText);
         } catch (NumberFormatException ex) {
             editTextAge.setError(getResources().getString(R.string.error_invalid_age));
             return false;

@@ -30,31 +30,34 @@
         <item>Suomi</item>
     </string-array>
 
-    <string-array name="probabilities">
-        <item>Tuntematon</item>
-        <item>Matala</item>
-        <item>Keskisuuri</item>
-        <item>Korkea</item>
-    </string-array>
-
     <!-- History Activity -->
     <string name="history_header">Historia</string>
     <string name="age_message">%dv</string>
     <string name="score_message">Pisteet: %s</string>
-    <string name="probability_message">Todennäköisyys: %s</string>
 
     <!-- Selection Fragment -->
-    <string name="selection_instructions_word">Valitse kaikki \'%s\' sanat.</string>
-    <string name="selection_instructions_letter">Valitse kaikki \'%s\' kirjaimet.</string>
+    <string-array name="wordSet1">
+        <item>kana</item>
+        <item>kuha</item>
+        <item>maha</item>
+        <item>paha</item>
+        <item>raha</item>
+        <item>sula</item>
+        <item>vala</item>
+    </string-array>
+
+    <string name="selection_instructions_word">Valitse kaikki sanat \'%s\'.</string>
+    <string name="selection_instructions_letter">Valitse kaikki kirjaimet \'%s\'.</string>
 
     <!-- Reverse Letters Fragment -->
     <string name="reverse_letters_instructions">Valitse kaikki kirjaimet jotka ovat väärinpäin.</string>
 
     <!-- Text Recognition Fragment -->
+    <string name="answer_hint">Vastaus</string>
     <string name="text_recognition_instructions">Kirjoita sana jonka näet kuvassa tekstikenttään.</string>
 
     <!-- Test End Activity -->
-    <string name="thank_you_message">Kiitos, %s</string>
-    <string name="saved_message">Koe suorituksesi on tallennettu onnistuneesti.</string>
+    <string name="thank_you_message">Kiitos, %s!</string>
+    <string name="saved_message">Koe suorituksesi on tallennettu.</string>
     <string name="return_home_button">Palaa Kotiin</string>
 </resources>

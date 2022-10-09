@@ -13,7 +13,9 @@ import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 
 /**
- * @author Joonas Jouttijärvi
+ * Activity for thanking the user after a test and sending them back to the start.
+ *
+ * @author Peetu Saarinen
  */
 public class TestEndActivity extends BaseActivity {
     private TextView textViewThankYou;

@@ -4,36 +4,41 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemDetails;
 
 /**
- * Adapter for letter and word selection test.
+ * Extension to {@link RecyclerView.Adapter} for displaying items in the {@link SelectionFragment}.
  *
  * @author Joel Tikkanen
  */
-
-public class SelectionAdapter extends BaseAdapter {
-    private final Context context;
+public class SelectionAdapter extends RecyclerView.Adapter<SelectionAdapter.ViewHolder> {
     private final List<String> items;
 
-    public SelectionAdapter(Context context, List<String> items) {
-        this.context = context;
+    private SelectionTracker<Long> selectionTracker;
+
+    public SelectionAdapter(List<String> items) {
         this.items = items;
+        setHasStableIds(true);
     }
 
-    @Override
-    public int getCount() {
-        return items.size();
+    public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
+        this.selectionTracker = selectionTracker;
     }
 
+    @NonNull
     @Override
-    public String getItem(int position) {
-        return items.get(position);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.item_selection, parent, false));
     }
 
     @Override
@@ -42,16 +47,52 @@ public class SelectionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String item = items.get(position);
 
-        View view;
-        if (convertView == null) {
-            view = inflater.inflate(R.layout.item_selection, parent, false);
-            ((TextView) view.getRootView()).setText(getItem(position));
-        } else {
-            view = convertView;
+        holder.getTextView().setText(item);
+
+        if (selectionTracker != null) {
+            if (selectionTracker.isSelected((long) position)) {
+                selectionTracker.select((long) position);
+                holder.getTextView().setBackgroundResource(R.drawable.background_selection_item);
+            } else {
+                selectionTracker.deselect((long) position);
+                holder.getTextView().setBackgroundResource(android.R.color.transparent);
+            }
         }
-        return view;
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    /**
+     * Extension to {@link RecyclerView.ViewHolder} that provides {@link SelectionAdapter} with the elements in the item {@link View}.
+     *
+     * @author Joel Tikkanen
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        private final TextView textView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            context = itemView.getContext();
+            textView = (TextView) itemView.getRootView();
+        }
+
+        public Context getContext() {
+            return context;
+        }
+
+        public TextView getTextView() {
+            return textView;
+        }
+
+        public SelectionItemDetails getItemDetails() {
+            return new SelectionItemDetails(getAdapterPosition());
+        }
     }
 }

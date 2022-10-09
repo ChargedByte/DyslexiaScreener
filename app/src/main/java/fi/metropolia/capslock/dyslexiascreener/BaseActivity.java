@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import fi.metropolia.capslock.dyslexiascreener.utils.LocaleUtil;
 
 /**
- * Activity-class that provides shared defaults for other activities in the application.
+ * Abstract activity that provides shared defaults for other activities in the application.
  *
  * @author Peetu Saarinen
  */

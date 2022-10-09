@@ -35,10 +35,6 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerViewHistory = findViewById(R.id.recyclerViewHistory);
 
         recyclerViewHistory.setLayoutManager(new GridLayoutManager(this, 1));
-
-        HistoryAdapter adapter = new HistoryAdapter();
-        viewModel.getTestListLiveData().observe(this, adapter::setItems);
-
-        recyclerViewHistory.setAdapter(adapter);
+        recyclerViewHistory.setAdapter(new HistoryAdapter(viewModel.getAllTests()));
     }
 }

@@ -1,7 +1,6 @@
 package fi.metropolia.capslock.dyslexiascreener.test.recognition;
 
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,10 +77,20 @@ public class TextRecognitionFragment extends ExerciseFragment {
             }
 
             if (testAnswered == totalTests) {
-                viewModel.getCompletedExercise().postValue(Pair.create(0, 0));
+                viewModel.getExerciseCompleted().postValue(null);
 
                 // TODO: Count score
             }
         });
+    }
+
+    @Override
+    public int getAvailablePoints() {
+        return 0;
+    }
+
+    @Override
+    public int getScoredPoints() {
+        return 0;
     }
 }

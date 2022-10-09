@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 /**
- * Fragment-class that provides shared functionality between individual tests.
+ * Fragment that provides shared functionality between individual tests.
  *
  * @author Peetu Saarinen
  */
@@ -21,4 +21,8 @@ public abstract class ExerciseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(TestViewModel.class);
     }
+
+    public abstract int getAvailablePoints();
+
+    public abstract int getScoredPoints();
 }

@@ -11,7 +11,7 @@ import java.util.Locale;
 import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 
 /**
- * Utility-class to help with localization tasks.
+ * Utility to help with localization tasks.
  *
  * @author Peetu Saarinen
  */

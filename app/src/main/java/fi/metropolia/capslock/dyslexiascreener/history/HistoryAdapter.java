@@ -12,28 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Collections;
 import java.util.List;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
- * Extension-class to {@link RecyclerView.Adapter} for displaying {@link Test} entities in the {@link HistoryActivity}.
+ * Extension to {@link RecyclerView.Adapter} for displaying {@link Test} entities in the {@link HistoryActivity}.
  *
  * @author Peetu Saarinen
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
-    private List<Test> items;
+    private final List<Test> items;
 
-    /**
-     * Constructs a {@link HistoryAdapter} class with an empty <code>items</code> list.
-     */
-    public HistoryAdapter() {
-        this.items = Collections.emptyList();
-    }
-
-    public void setItems(List<Test> items) {
+    public HistoryAdapter(List<Test> items) {
         this.items = items;
     }
 
@@ -51,16 +43,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Context context = holder.itemView.getContext();
         Resources resources = context.getResources();
 
-        String probability = resources.getStringArray(R.array.probabilities)[0]; // TODO: Calculate probability
-
         holder.getTextViewNameAndAge()
             .setText(String.format("%s, %s", item.getStudentName(), String.format(resources.getString(R.string.age_message), item.getStudentAge())));
 
         holder.getTextViewDateTime()
             .setText(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(item.getTimestamp()));
-
-        holder.getTextViewProbability()
-            .setText(String.format(resources.getString(R.string.probability_message), probability));
 
         holder.getTextViewScore()
             .setText(String.format(resources.getString(R.string.score_message),
@@ -73,14 +60,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     /**
-     * Extension-class to {@link RecyclerView.ViewHolder} that provides {@link HistoryAdapter} with the elements in the item {@link View}.
+     * Extension to {@link RecyclerView.ViewHolder} that provides {@link HistoryAdapter} with the elements in the item {@link View}.
      *
      * @author Peetu Saarinen
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewNameAndAge;
         private final TextView textViewDateTime;
-        private final TextView textViewProbability;
         private final TextView textViewScore;
 
         public ViewHolder(@NonNull View itemView) {
@@ -88,7 +74,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
             textViewNameAndAge = itemView.findViewById(R.id.textViewNameAndAge);
             textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
-            textViewProbability = itemView.findViewById(R.id.textViewProbability);
             textViewScore = itemView.findViewById(R.id.textViewScore);
         }
 
@@ -98,10 +83,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         public TextView getTextViewDateTime() {
             return textViewDateTime;
-        }
-
-        public TextView getTextViewProbability() {
-            return textViewProbability;
         }
 
         public TextView getTextViewScore() {

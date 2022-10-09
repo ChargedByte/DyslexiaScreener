@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.time.OffsetDateTime;
 
 /**
- * Entity / Data-class that represents a single take of the test
+ * Entity that represents a single take of the test
  *
  * @author Peetu Saarinen
  */

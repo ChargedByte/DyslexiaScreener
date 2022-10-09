@@ -34,31 +34,41 @@
         <item>Finnish</item>
     </string-array>
 
-    <string-array name="probabilities">
-        <item>Unknown</item>
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-    </string-array>
-
     <!-- History Activity -->
     <string name="history_header">History</string>
     <string name="age_message">%dyo</string>
     <string name="score_message">Score: %s</string>
-    <string name="probability_message">Probability: %s</string>
 
     <!-- Selection Fragment -->
-    <string name="selection_instructions_word">Select all \'%s\' words.</string>
-    <string name="selection_instructions_letter">Select all \'%s\' letters.</string>
+    <string-array name="letterSet1">
+        <item>b</item>
+        <item>d</item>
+        <item>p</item>
+        <item>q</item>
+    </string-array>
+
+    <string-array name="wordSet1">
+        <item>was</item>
+        <item>raw</item>
+        <item>saw</item>
+        <item>way</item>
+        <item>win</item>
+        <item>war</item>
+        <item>why</item>
+    </string-array>
+
+    <string name="selection_instructions_word">Select all words \'%s\'.</string>
+    <string name="selection_instructions_letter">Select all letters \'%s\'.</string>
 
     <!-- Reverse Letters Fragment -->
     <string name="reverse_letters_instructions">Select all letters that are reversed.</string>
 
     <!-- Text Recognition Fragment -->
+    <string name="answer_hint">Answer</string>
     <string name="text_recognition_instructions">Type the word you see in the image to the text field.</string>
 
     <!-- Test End Activity -->
-    <string name="thank_you_message">Thank you, %s</string>
-    <string name="saved_message">Your test has been successfully saved.</string>
+    <string name="thank_you_message">Thank you, %s!</string>
+    <string name="saved_message">Your test has been saved.</string>
     <string name="return_home_button">Back Home</string>
 </resources>
