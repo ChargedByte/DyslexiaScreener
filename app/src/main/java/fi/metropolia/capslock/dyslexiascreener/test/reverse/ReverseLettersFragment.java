@@ -2,14 +2,11 @@ package fi.metropolia.capslock.dyslexiascreener.test.reverse;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.selection.ItemDetailsLookup;
-import androidx.recyclerview.selection.ItemKeyProvider;
 import androidx.recyclerview.selection.SelectionPredicates;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
@@ -17,12 +14,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemKeyProvider;
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemLookup;
 import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
 
 /**
@@ -31,6 +34,8 @@ import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
  * @author Joonas Jouttijärvi
  */
 public class ReverseLettersFragment extends ExerciseFragment {
+    private static final String IS_ITEMS = "items_list";
+
     private static final ReverseLetter[] reverseLetters = {
         new ReverseLetter(R.drawable.letter_b, false),
         new ReverseLetter(R.drawable.letter_c, false),
@@ -51,7 +56,9 @@ public class ReverseLettersFragment extends ExerciseFragment {
         new ReverseLetter(R.drawable.letter_z, false),
     };
 
-    private static List<ReverseLetter> items;
+    private List<ReverseLetter> items;
+
+    private SelectionTracker<Long> tracker;
 
     public ReverseLettersFragment() {
     }
@@ -67,6 +74,13 @@ public class ReverseLettersFragment extends ExerciseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            Type listType = new TypeToken<List<ReverseLetter>>() {
+            }.getType();
+            items = new Gson().fromJson(savedInstanceState.getString(IS_ITEMS), listType);
+            return;
+        }
 
         items = new ArrayList<>();
 
@@ -86,13 +100,11 @@ public class ReverseLettersFragment extends ExerciseFragment {
 
         ReverseLettersAdapter adapter = new ReverseLettersAdapter(items);
 
-        int spanCount = items.size() / 4;
-
         RecyclerView recyclerViewItems = view.findViewById(R.id.recyclerViewItems);
         recyclerViewItems.setAdapter(adapter);
-        recyclerViewItems.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
+        recyclerViewItems.setLayoutManager(new GridLayoutManager(getContext(), items.size() / 4));
 
-        SelectionTracker<Long> tracker = new SelectionTracker.Builder<>(
+        tracker = new SelectionTracker.Builder<>(
             "reverse_letter_selection",
             recyclerViewItems,
             new ReverseLetterItemKeyProvider(recyclerViewItems),
@@ -100,74 +112,34 @@ public class ReverseLettersFragment extends ExerciseFragment {
             StorageStrategy.createLongStorage()
         ).withSelectionPredicate(SelectionPredicates.createSelectAnything()).build();
 
+        if (savedInstanceState != null) {
+            tracker.onRestoreInstanceState(savedInstanceState);
+        }
+
         adapter.setSelectionTracker(tracker);
 
-        tracker.addObserver(new SelectionTracker.SelectionObserver<>() {
-            @Override
-            public void onItemStateChanged(@NonNull Long key, boolean selected) {
-                super.onItemStateChanged(key, selected);
-            }
-        });
-
         FloatingActionButton floatingActionButtonNext = view.findViewById(R.id.floatingActionButtonNext);
-        floatingActionButtonNext.setOnClickListener(v -> {
-            viewModel.getExerciseCompleted().postValue(null);
+        floatingActionButtonNext.setOnClickListener(v -> viewModel.getExerciseCompleted().postValue(null));
+    }
 
-            // TODO: Count score
-        });
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        tracker.onSaveInstanceState(outState);
+        outState.putString(IS_ITEMS, new Gson().toJson(items));
     }
 
     @Override
     public int getAvailablePoints() {
-        return 0;
+        return (int) items.stream().filter(ReverseLetter::isReversed).count();
     }
 
     @Override
     public int getScoredPoints() {
-        return 0;
-    }
-
-    private static class ReverseLetterItemKeyProvider extends ItemKeyProvider<Long> {
-        private final RecyclerView recyclerView;
-
-        public ReverseLetterItemKeyProvider(RecyclerView recyclerView) {
-            super(SCOPE_MAPPED);
-            this.recyclerView = recyclerView;
-        }
-
-        @Nullable
-        @Override
-        public Long getKey(int position) {
-            RecyclerView.Adapter<?> adapter = recyclerView.getAdapter();
-            if (adapter == null)
-                throw new IllegalStateException("RecyclerView adapter is not set");
-            return adapter.getItemId(position);
-        }
-
-        @Override
-        public int getPosition(@NonNull Long key) {
-            RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForItemId(key);
-            if (viewHolder == null)
-                return RecyclerView.NO_POSITION;
-            return viewHolder.getLayoutPosition();
-        }
-    }
-
-    private static class ReverseLetterItemLookup extends ItemDetailsLookup<Long> {
-        private final RecyclerView recyclerView;
-
-        public ReverseLetterItemLookup(RecyclerView recyclerView) {
-            this.recyclerView = recyclerView;
-        }
-
-        @Nullable
-        @Override
-        public ItemDetails<Long> getItemDetails(@NonNull MotionEvent event) {
-            View view = recyclerView.findChildViewUnder(event.getX(), event.getY());
-            if (view != null) {
-                return ((ReverseLettersAdapter.ViewHolder) recyclerView.getChildViewHolder(view)).getItemDetails();
-            }
-            return null;
-        }
+        return (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+            .mapToInt(Long::intValue)
+            .mapToObj(x -> items.get(x))
+            .filter(ReverseLetter::isReversed)
+            .count();
     }
 }

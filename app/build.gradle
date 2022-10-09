@@ -96,7 +96,7 @@ dependencies {
     // Android RecyclerView Selection
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
 
-     // Google Gson
+    // Google Gson
     implementation 'com.google.code.gson:gson:2.9.1'
 }
 

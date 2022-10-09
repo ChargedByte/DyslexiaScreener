@@ -15,7 +15,7 @@ import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
  *
  * @author Peetu Saarinen
  */
-public class LocaleUtil {
+public final class LocaleUtil {
 
     /**
      * Updates the provided {@link Context} object with the language saved in application's preferences.

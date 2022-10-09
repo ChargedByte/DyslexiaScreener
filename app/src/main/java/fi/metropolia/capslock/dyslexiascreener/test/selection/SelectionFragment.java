@@ -19,11 +19,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
-import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.SelectionItemDetailsLookup;
-import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.SelectionItemKeyProvider;
+import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemDetailsLookup;
+import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemKeyProvider;
 import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
 
 /**
@@ -35,8 +36,8 @@ public class SelectionFragment extends ExerciseFragment {
     private static final String ARG_CORRECT_ANSWER = "correct_answer";
     private static final String ARG_ITEMS = "items";
 
-    private String correctAnswer;
     private List<String> items;
+    private String correctAnswer;
 
     private SelectionTracker<Long> tracker;
 
@@ -68,7 +69,8 @@ public class SelectionFragment extends ExerciseFragment {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            tracker.onRestoreInstanceState(savedInstanceState);
+            items = List.of(savedInstanceState.getString(ARG_ITEMS).split(","));
+            correctAnswer = savedInstanceState.getString(ARG_CORRECT_ANSWER);
             return;
         }
 
@@ -116,20 +118,22 @@ public class SelectionFragment extends ExerciseFragment {
             StorageStrategy.createLongStorage()
         ).withSelectionPredicate(SelectionPredicates.createSelectAnything()).build();
 
+        if (savedInstanceState != null) {
+            tracker.onRestoreInstanceState(savedInstanceState);
+        }
+
         adapter.setSelectionTracker(tracker);
 
         FloatingActionButton floatingActionButtonNext = view.findViewById(R.id.floatingActionButtonNext);
-        floatingActionButtonNext.setOnClickListener(v -> {
-            viewModel.getExerciseCompleted().postValue(null);
-
-            // TODO: Count score
-        });
+        floatingActionButtonNext.setOnClickListener(v -> viewModel.getExerciseCompleted().postValue(null));
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         tracker.onSaveInstanceState(outState);
+        outState.putString(ARG_ITEMS, String.join(",", items));
+        outState.putString(ARG_CORRECT_ANSWER, correctAnswer);
     }
 
     @Override
@@ -139,6 +143,9 @@ public class SelectionFragment extends ExerciseFragment {
 
     @Override
     public int getScoredPoints() {
-        return 0;
+        return (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+            .mapToInt(Long::intValue)
+            .filter(x -> items.get(x).equals(correctAnswer))
+            .count();
     }
 }

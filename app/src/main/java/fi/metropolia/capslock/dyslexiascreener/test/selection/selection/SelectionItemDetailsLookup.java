@@ -1,4 +1,4 @@
-package fi.metropolia.capslock.dyslexiascreener.test.reverse.selection;
+package fi.metropolia.capslock.dyslexiascreener.test.selection.selection;
 
 import android.view.MotionEvent;
 import android.view.View;
