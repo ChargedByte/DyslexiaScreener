@@ -38,6 +38,8 @@
     <string name="history_header">History</string>
     <string name="age_message">%dyo</string>
     <string name="score_message">Score: %s</string>
+    <string name="undo_button">Undo</string>
+    <string name="deleted_message">Selected test deleted</string>
 
     <!-- Selection Fragment -->
     <string-array name="letterSet1">

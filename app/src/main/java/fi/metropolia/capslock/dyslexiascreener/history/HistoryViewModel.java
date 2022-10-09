@@ -26,4 +26,22 @@ public class HistoryViewModel extends AndroidViewModel {
     public List<Test> getAllTests() {
         return database.testDao().findAll();
     }
+
+    /**
+     * Save the provided entity to the database
+     *
+     * @param entity A {@link Test} entity to be saved
+     */
+    public void saveTest(Test entity) {
+        database.testDao().insert(entity);
+    }
+
+    /**
+     * Delete the provided entity from the database
+     *
+     * @param entity A {@link Test} entity to be deleted
+     */
+    public void deleteTest(Test entity) {
+        database.testDao().delete(entity);
+    }
 }

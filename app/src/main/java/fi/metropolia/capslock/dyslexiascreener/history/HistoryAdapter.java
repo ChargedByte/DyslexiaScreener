@@ -2,12 +2,14 @@ package fi.metropolia.capslock.dyslexiascreener.history;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.format.DateTimeFormatter;
@@ -25,8 +27,18 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private final List<Test> items;
 
+    private final MutableLiveData<Pair<Integer, Test>> itemDeleted = new MutableLiveData<>();
+
     public HistoryAdapter(List<Test> items) {
         this.items = items;
+    }
+
+    public List<Test> getItems() {
+        return items;
+    }
+
+    public MutableLiveData<Pair<Integer, Test>> getItemDeleted() {
+        return itemDeleted;
     }
 
     @NonNull
@@ -52,6 +64,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.getTextViewScore()
             .setText(String.format(resources.getString(R.string.score_message),
                 item.getStudentPoints() + "/" + item.getAvailablePoints()));
+
+        holder.getItemView().setOnLongClickListener(v -> {
+            items.remove(item);
+            itemDeleted.postValue(Pair.create(position, item));
+            return true;
+        });
     }
 
     @Override
@@ -65,6 +83,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      * @author Peetu Saarinen
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        private final View itemView;
         private final TextView textViewNameAndAge;
         private final TextView textViewDateTime;
         private final TextView textViewScore;
@@ -72,9 +92,19 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            context = itemView.getContext();
+            this.itemView = itemView;
             textViewNameAndAge = itemView.findViewById(R.id.textViewNameAndAge);
             textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
             textViewScore = itemView.findViewById(R.id.textViewScore);
+        }
+
+        public Context getContext() {
+            return context;
+        }
+
+        public View getItemView() {
+            return itemView;
         }
 
         public TextView getTextViewNameAndAge() {

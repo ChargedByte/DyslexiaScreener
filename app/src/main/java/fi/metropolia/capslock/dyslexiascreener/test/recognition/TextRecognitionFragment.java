@@ -5,28 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Random;
-
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
 
 /**
+ * Fragment where the user has type the obscured word they see in the image.
+ *
  * @author Joel Tikkanen
  */
 public class TextRecognitionFragment extends ExerciseFragment {
-    private static final Random random = new Random();
-    private static final int totalTests = 2;
+    private static final String IS_TEXT = "text";
 
-    private final TextRecognitionImages recognitionClass = new TextRecognitionImages();
-    private int testPoints = 0;
-    private int testAnswered = 0;
+    private EditText editText;
 
     public TextRecognitionFragment() {
     }
@@ -53,40 +49,31 @@ public class TextRecognitionFragment extends ExerciseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ImageView imageViewWord = view.findViewById(R.id.imageViewWord);
+        editText = view.findViewById(R.id.editTextWord);
 
-        int selectedIndex = random.nextInt(4);
-        imageViewWord.setImageResource(recognitionClass.getImageIDs()[selectedIndex]);
+        if (savedInstanceState != null) {
+            String text = savedInstanceState.getString(IS_TEXT);
 
-        EditText editTextWord = view.findViewById(R.id.editTextWord);
+            if (text != null)
+                editText.setText(text);
+        }
 
         FloatingActionButton floatingActionButtonNext = view.findViewById(R.id.floatingActionButtonNext);
-        floatingActionButtonNext.setOnClickListener(v -> {
-            testAnswered++;
-            if (testAnswered < totalTests) {
-                recognitionClass.removeImageID(selectedIndex);
-                recognitionClass.removeImageText(selectedIndex);
-                int selectedIndex1 = random.nextInt(4 - testAnswered);
-                imageViewWord.setImageResource(recognitionClass.getImageIDs()[selectedIndex1]);
-                editTextWord.setText("");
+        floatingActionButtonNext.setOnClickListener(v -> viewModel.getExerciseCompleted().postValue(null));
+    }
 
-            }
-            if (editTextWord.getText().toString().equals(recognitionClass.getImageTexts()[selectedIndex])) {
-                //correct answer
-                testPoints++;
-            }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String text = editText.getText().toString();
 
-            if (testAnswered == totalTests) {
-                viewModel.getExerciseCompleted().postValue(null);
-
-                // TODO: Count score
-            }
-        });
+        if (!text.isBlank())
+            outState.putString(IS_TEXT, text);
     }
 
     @Override
     public int getAvailablePoints() {
-        return 0;
+        return 1;
     }
 
     @Override

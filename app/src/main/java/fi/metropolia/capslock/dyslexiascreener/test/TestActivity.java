@@ -13,8 +13,6 @@ import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 import fi.metropolia.capslock.dyslexiascreener.test.recognition.TextRecognitionFragment;
-import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
-import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 
 /**
  * Activity for handling the {@link ExerciseFragment}s and the test process.
@@ -24,6 +22,7 @@ import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 public class TestActivity extends AppCompatActivity {
 
     private TestViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +38,6 @@ public class TestActivity extends AppCompatActivity {
         Test test = new Test(studentName, studentAge);
 
         ArrayDeque<ExerciseFragment> fragments = new ArrayDeque<>();
-        fragments.add(SelectionFragment.newInstance(R.array.letterSet1));
-        fragments.add(SelectionFragment.newInstance(R.array.wordSet1));
-        fragments.add(ReverseLettersFragment.newInstance());
         fragments.add(TextRecognitionFragment.newInstance());
 
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -34,6 +34,8 @@
     <string name="history_header">Historia</string>
     <string name="age_message">%dv</string>
     <string name="score_message">Pisteet: %s</string>
+    <string name="undo_button">Peruuta</string>
+    <string name="deleted_message">Valittu testi poistettu</string>
 
     <!-- Selection Fragment -->
     <string-array name="wordSet1">

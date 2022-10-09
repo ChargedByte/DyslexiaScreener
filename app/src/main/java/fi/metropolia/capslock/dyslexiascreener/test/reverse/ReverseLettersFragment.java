@@ -50,10 +50,9 @@ public class ReverseLettersFragment extends ExerciseFragment {
         new ReverseLetter(R.drawable.letter_j, false),
         new ReverseLetter(R.drawable.letter_j_reverse, true),
         new ReverseLetter(R.drawable.letter_p, false),
-        new ReverseLetter(R.drawable.letter_q, false),
         new ReverseLetter(R.drawable.letter_s, false),
+        new ReverseLetter(R.drawable.letter_s_reverse, true),
         new ReverseLetter(R.drawable.letter_t, false),
-        new ReverseLetter(R.drawable.letter_z, false),
     };
 
     private List<ReverseLetter> items;
@@ -84,7 +83,7 @@ public class ReverseLettersFragment extends ExerciseFragment {
 
         items = new ArrayList<>();
 
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 30; i++) {
             items.add(RandomUtil.item(reverseLetters));
         }
     }
@@ -102,7 +101,7 @@ public class ReverseLettersFragment extends ExerciseFragment {
 
         RecyclerView recyclerViewItems = view.findViewById(R.id.recyclerViewItems);
         recyclerViewItems.setAdapter(adapter);
-        recyclerViewItems.setLayoutManager(new GridLayoutManager(getContext(), items.size() / 4));
+        recyclerViewItems.setLayoutManager(new GridLayoutManager(getContext(), items.size() / 3));
 
         tracker = new SelectionTracker.Builder<>(
             "reverse_letter_selection",
