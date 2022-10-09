@@ -20,9 +20,19 @@ public class TestViewModel extends AndroidViewModel {
 
     private final ScreeningDatabase database;
 
+    private Test test;
+
     public TestViewModel(@NonNull Application application) {
         super(application);
         database = ScreeningDatabase.getInstance(application);
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 
     public MutableLiveData<Object> getExerciseCompleted() {

@@ -34,7 +34,7 @@ import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
  * @author Joonas Jouttijärvi
  */
 public class ReverseLettersFragment extends ExerciseFragment {
-    private static final String IS_ITEMS = "items_list";
+    private static final String STATE_ITEMS = "listItems";
 
     private static final ReverseLetter[] reverseLetters = {
         new ReverseLetter(R.drawable.letter_b, false),
@@ -62,14 +62,6 @@ public class ReverseLettersFragment extends ExerciseFragment {
     public ReverseLettersFragment() {
     }
 
-    @NonNull
-    public static ReverseLettersFragment newInstance() {
-        ReverseLettersFragment fragment = new ReverseLettersFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +69,7 @@ public class ReverseLettersFragment extends ExerciseFragment {
         if (savedInstanceState != null) {
             Type listType = new TypeToken<List<ReverseLetter>>() {
             }.getType();
-            items = new Gson().fromJson(savedInstanceState.getString(IS_ITEMS), listType);
+            items = new Gson().fromJson(savedInstanceState.getString(STATE_ITEMS), listType);
             return;
         }
 
@@ -123,9 +115,9 @@ public class ReverseLettersFragment extends ExerciseFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         tracker.onSaveInstanceState(outState);
-        outState.putString(IS_ITEMS, new Gson().toJson(items));
+        outState.putString(STATE_ITEMS, new Gson().toJson(items));
+        super.onSaveInstanceState(outState);
     }
 
     @Override

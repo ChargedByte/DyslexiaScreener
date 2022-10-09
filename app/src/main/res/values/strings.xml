@@ -49,6 +49,13 @@
         <item>q</item>
     </string-array>
 
+    <string-array name="letterSet2">
+        <item>e</item>
+        <item>s</item>
+        <item>x</item>
+        <item>z</item>
+    </string-array>
+
     <string-array name="wordSet1">
         <item>was</item>
         <item>raw</item>
@@ -68,6 +75,9 @@
     <!-- Text Recognition Fragment -->
     <string name="answer_hint">Answer</string>
     <string name="text_recognition_instructions">Type the word you see in the image to the text field.</string>
+    <string name="word_monkey">Monkey</string>
+    <string name="word_herring">Herring</string>
+    <string name="word_evil">Evil</string>
 
     <!-- Test End Activity -->
     <string name="thank_you_message">Thank you, %s!</string>

@@ -57,6 +57,9 @@
     <!-- Text Recognition Fragment -->
     <string name="answer_hint">Vastaus</string>
     <string name="text_recognition_instructions">Kirjoita sana jonka näet kuvassa tekstikenttään.</string>
+    <string name="word_monkey">Apina</string>
+    <string name="word_herring">Silakka</string>
+    <string name="word_evil">Paha</string>
 
     <!-- Test End Activity -->
     <string name="thank_you_message">Kiitos, %s!</string>

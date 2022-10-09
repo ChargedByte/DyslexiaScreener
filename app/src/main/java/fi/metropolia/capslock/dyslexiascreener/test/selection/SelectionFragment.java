@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.SelectionPredicates;
@@ -33,8 +32,8 @@ import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
  * @author Joel Tikkanen
  */
 public class SelectionFragment extends ExerciseFragment {
-    private static final String ARG_CORRECT_ANSWER = "correct_answer";
-    private static final String ARG_ITEMS = "items";
+    private static final String ARG_CORRECT_ANSWER = "correctAnswer";
+    private static final String ARG_ITEMS = "listItems";
 
     private List<String> items;
     private String correctAnswer;
@@ -42,26 +41,6 @@ public class SelectionFragment extends ExerciseFragment {
     private SelectionTracker<Long> tracker;
 
     public SelectionFragment() {
-    }
-
-    @NonNull
-    public static SelectionFragment newInstance(@ArrayRes int resId) {
-        SelectionFragment fragment = new SelectionFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_ITEMS, resId);
-        args.putInt(ARG_CORRECT_ANSWER, -1);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @NonNull
-    public static SelectionFragment newInstance(@ArrayRes int resId, int correctIndex) {
-        SelectionFragment fragment = new SelectionFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_ITEMS, resId);
-        args.putInt(ARG_CORRECT_ANSWER, correctIndex);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -130,10 +109,10 @@ public class SelectionFragment extends ExerciseFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         tracker.onSaveInstanceState(outState);
         outState.putString(ARG_ITEMS, String.join(",", items));
         outState.putString(ARG_CORRECT_ANSWER, correctAnswer);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

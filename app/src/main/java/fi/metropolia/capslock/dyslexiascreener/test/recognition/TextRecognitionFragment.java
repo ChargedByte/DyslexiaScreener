@@ -20,24 +20,17 @@ import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
  * @author Joel Tikkanen
  */
 public class TextRecognitionFragment extends ExerciseFragment {
-    private static final String IS_TEXT = "text";
+    private static final String STATE_TEXT = "textWord";
+
+    private static RecognizableWord[] recognizableWords = {
+        new RecognizableWord(R.drawable.evil, R.string.word_evil),
+        new RecognizableWord(R.drawable.herring, R.string.word_herring),
+        new RecognizableWord(R.drawable.monkey, R.string.word_monkey),
+    };
 
     private EditText editText;
 
     public TextRecognitionFragment() {
-    }
-
-    @NonNull
-    public static TextRecognitionFragment newInstance() {
-        TextRecognitionFragment fragment = new TextRecognitionFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -52,7 +45,7 @@ public class TextRecognitionFragment extends ExerciseFragment {
         editText = view.findViewById(R.id.editTextWord);
 
         if (savedInstanceState != null) {
-            String text = savedInstanceState.getString(IS_TEXT);
+            String text = savedInstanceState.getString(STATE_TEXT);
 
             if (text != null)
                 editText.setText(text);
@@ -64,11 +57,8 @@ public class TextRecognitionFragment extends ExerciseFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(STATE_TEXT, editText.getText().toString());
         super.onSaveInstanceState(outState);
-        String text = editText.getText().toString();
-
-        if (!text.isBlank())
-            outState.putString(IS_TEXT, text);
     }
 
     @Override

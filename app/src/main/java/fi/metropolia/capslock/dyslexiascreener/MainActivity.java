@@ -23,8 +23,8 @@ import fi.metropolia.capslock.dyslexiascreener.test.TestActivity;
  * @author Peetu Saarinen
  */
 public class MainActivity extends BaseActivity {
-    private static final String IS_NAME = "text_name";
-    private static final String IS_AGE = "text_age";
+    private static final String STATE_NAME = "studentName";
+    private static final String STATE_AGE = "studentAge";
 
     private EditText editTextName;
     private EditText editTextAge;
@@ -48,8 +48,9 @@ public class MainActivity extends BaseActivity {
                 String studentName = editTextName.getText().toString();
                 int studentAge = Integer.parseInt(editTextAge.getText().toString());
 
-                // TODO: Warning dialog
-                // TODO: Confirm dialog
+                if (studentAge > 13) {
+                    // TODO: Age warning
+                }
 
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, studentName);
@@ -57,30 +58,20 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
-        if (savedInstanceState != null) {
-            String nameText = savedInstanceState.getString(IS_NAME);
-            String ageText = savedInstanceState.getString(IS_NAME);
-
-            if (nameText != null)
-                editTextName.setText(nameText);
-
-            if (ageText != null)
-                editTextAge.setText(ageText);
-        }
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(STATE_NAME, editTextName.getText().toString());
+        outState.putString(STATE_AGE, editTextAge.getText().toString());
         super.onSaveInstanceState(outState);
-        String nameText = editTextName.getText().toString();
-        String ageText = editTextAge.getText().toString();
+    }
 
-        if (!nameText.isBlank())
-            outState.putString(IS_NAME, nameText);
-
-        if (!ageText.isBlank())
-            outState.putString(IS_AGE, ageText);
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        editTextName.setText(savedInstanceState.getString(STATE_NAME));
+        editTextAge.setText(savedInstanceState.getString(STATE_AGE));
     }
 
     @Override

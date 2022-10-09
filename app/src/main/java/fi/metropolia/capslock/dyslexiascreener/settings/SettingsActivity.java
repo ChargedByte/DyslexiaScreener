@@ -26,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
             .beginTransaction()
+            .setReorderingAllowed(true)
             .replace(R.id.fragmentContainerViewSettings, new SettingsFragment())
             .commit();
     }

@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-
-import java.util.ArrayDeque;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
-import fi.metropolia.capslock.dyslexiascreener.test.recognition.TextRecognitionFragment;
 
 /**
  * Activity for handling the {@link ExerciseFragment}s and the test process.
@@ -20,7 +16,6 @@ import fi.metropolia.capslock.dyslexiascreener.test.recognition.TextRecognitionF
  * @author Peetu Saarinen
  */
 public class TestActivity extends AppCompatActivity {
-
     private TestViewModel viewModel;
 
 
@@ -35,36 +30,19 @@ public class TestActivity extends AppCompatActivity {
         String studentName = intent.getStringExtra(SharedConstants.EXTRA_STUDENT_NAME);
         int studentAge = intent.getIntExtra(SharedConstants.EXTRA_STUDENT_AGE, -1);
 
-        Test test = new Test(studentName, studentAge);
-
-        ArrayDeque<ExerciseFragment> fragments = new ArrayDeque<>();
-        fragments.add(TextRecognitionFragment.newInstance());
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        viewModel.setTest(new Test(studentName, studentAge));
 
         if (savedInstanceState == null) {
-            fragmentManager
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.fragmentContainerViewExercise, fragments.removeFirst())
-                .commit();
+
         }
 
         viewModel.getExerciseCompleted().observe(this, obj -> {
-            ExerciseFragment nextFragment = fragments.pollFirst();
-            if (nextFragment != null) {
-                fragmentManager
-                    .beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.fragmentContainerViewExercise, nextFragment)
-                    .commit();
-                return;
-            }
 
-            viewModel.saveTest(test);
+
+            viewModel.saveTest(viewModel.getTest());
 
             Intent newIntent = new Intent(this, TestEndActivity.class);
-            newIntent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, test.getStudentName());
+            newIntent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, viewModel.getTest().getStudentName());
             startActivity(newIntent);
         });
     }

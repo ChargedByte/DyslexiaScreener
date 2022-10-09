@@ -32,7 +32,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ListPreference selectTime = findPreference(SharedConstants.PREF_TEST_TIME_LIMIT);
 
         if (selectTime != null) {
-            int[] timeLimits = {4, 6, 8, 12};
+            int[] timeLimits = {1, 2, 3, 4, 5};
 
             selectTime.setEntries(
                 Arrays.stream(timeLimits)
@@ -56,7 +56,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ListPreference selectQuestionCount = findPreference(SharedConstants.PREF_TEST_EXERCISES);
 
         if (selectQuestionCount != null) {
-            int[] questionCounts = {4, 6, 8, 12};
+            int[] questionCounts = {1, 2, 3, 4, 5};
 
             selectQuestionCount.setEntries(
                 Arrays.stream(questionCounts)
