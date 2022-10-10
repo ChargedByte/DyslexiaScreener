@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemDetails;
 
 /**

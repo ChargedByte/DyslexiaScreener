@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 
 /**
  * Container activity for the {@link SettingsFragment}.

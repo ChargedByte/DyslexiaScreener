@@ -3,7 +3,6 @@ package fi.metropolia.capslock.dyslexiascreener.history;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
@@ -19,7 +18,7 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
  *
  * @author Peetu Saarinen
  */
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends BaseActivity {
     private RecyclerView recyclerViewHistory;
 
     private HistoryViewModel viewModel;

@@ -5,9 +5,7 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import fi.metropolia.capslock.dyslexiascreener.BaseActivity;
-import fi.metropolia.capslock.dyslexiascreener.R;
-import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**

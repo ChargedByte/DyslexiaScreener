@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.time.OffsetDateTime;
 
 /**
- * Entity that represents a single take of the test
+ * Entity that represents a single take of the test.
  *
  * @author Peetu Saarinen
  */
@@ -117,18 +117,29 @@ public class Test {
         this.availablePoints += value;
     }
 
+    /**
+     * Calculates the possibility of dyslexia from the user's score and age.
+     * <p>
+     * This method is very crude at the moment and simply test if the score is above certain percentages.
+     * <p>
+     * Ages 9 and bellow the required percentage of correct answers at minimum is 75.
+     * Ages 12 and bellow the required percentage of correct answers at minimum is 85.
+     * Ages 12 and larger the required percentage of correct answers at minimum is 95.
+     *
+     * @return <code>true</code> if dyslexia is a possibility, otherwise <code>false</code>
+     */
     public boolean isDyslexiaPossible() {
         double score = studentPoints / (double) availablePoints;
 
         if (studentAge <= 9) {
             return score < 0.75;
-        } else if (studentAge <= 12) {
-            return score < 0.85;
-        } else if (studentAge <= 14) {
-            return score < 0.95;
         }
 
-        return false;
+        if (studentAge <= 12) {
+            return score < 0.85;
+        }
+
+        return score < 0.95;
     }
 
     @NonNull

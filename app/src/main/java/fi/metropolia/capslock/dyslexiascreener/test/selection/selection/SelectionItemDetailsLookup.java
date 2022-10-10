@@ -9,7 +9,13 @@ import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionAdapter;
+import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 
+/**
+ * {@link ItemDetailsLookup} for the {@link SelectionFragment}'s selection functionality.
+ *
+ * @author Peetu Saarinen
+ */
 public class SelectionItemDetailsLookup extends ItemDetailsLookup<Long> {
     private final RecyclerView recyclerView;
 

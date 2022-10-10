@@ -6,7 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemDetailsLookup;
 
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
+import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
+
 /**
+ * {@link ItemDetailsLookup.ItemDetails} for the {@link SelectionFragment}'s selection functionality.
+ *
  * @author Peetu Saarinen
  */
 public class SelectionItemDetails extends ItemDetailsLookup.ItemDetails<Long> {

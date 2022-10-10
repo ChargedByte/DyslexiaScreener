@@ -2,9 +2,17 @@ package fi.metropolia.capslock.dyslexiascreener.test.selection.selection;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.selection.ItemKeyProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
+
+/**
+ * {@link ItemKeyProvider} for the {@link SelectionFragment}'s selection functionality.
+ *
+ * @author Peetu Saarinen
+ */
 public class SelectionItemKeyProvider extends ItemKeyProvider<Long> {
     private final RecyclerView recyclerView;
 

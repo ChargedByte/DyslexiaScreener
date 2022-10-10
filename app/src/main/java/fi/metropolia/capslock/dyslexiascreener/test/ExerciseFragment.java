@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 /**
- * Fragment that provides shared functionality between individual tests.
+ * {@link Fragment} that provides shared functionality between individual exercises.
  *
  * @author Peetu Saarinen
  */

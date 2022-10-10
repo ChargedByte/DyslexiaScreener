@@ -13,11 +13,11 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
 
 /**
- * Fragment where the user has type the obscured word they see in the image.
+ * {@link ExerciseFragment} where the user has type the obscured word they see in the image.
  *
  * @author Joel Tikkanen
  */
@@ -89,7 +89,8 @@ public class TextRecognitionFragment extends ExerciseFragment {
 
     @Override
     public int getScoredPoints() {
-        if (editText.getText().toString().equals(getResources().getString(item.getStringResId())))
+        String expected = getResources().getString(item.getStringResId());
+        if (editText.getText().toString().equalsIgnoreCase(expected))
             return 1;
         return 0;
     }

@@ -22,14 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemKeyProvider;
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.selection.ReverseLetterItemLookup;
 import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
 
 /**
- * Fragment where the user has to select images in the grid where the letter is reversed.
+ * {@link ExerciseFragment} where the user has to select images in the grid where the letter is reversed.
  *
  * @author Joonas Jouttijärvi
  */
@@ -138,7 +138,7 @@ public class ReverseLettersFragment extends ExerciseFragment {
             .mapToObj(x -> items.get(x))
             .filter(ReverseLetter::isReversed)
             .count();
-        
+
         return correctSelections - incorrectSelections;
     }
 }
