@@ -55,6 +55,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Context context = holder.itemView.getContext();
         Resources resources = context.getResources();
 
+        String[] array = resources.getStringArray(R.array.dyslexiaPossibleOptions);
+
+        String possible = item.isDyslexiaPossible() ? array[0] : array[1];
+
+        holder.getTextViewDyslexia()
+                .setText(String.format(resources.getString(R.string.dyslexia_possible), possible));
+
         holder.getTextViewNameAndAge()
             .setText(String.format("%s, %s", item.getStudentName(), String.format(resources.getString(R.string.age_message), item.getStudentAge())));
 
@@ -88,6 +95,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         private final TextView textViewNameAndAge;
         private final TextView textViewDateTime;
         private final TextView textViewScore;
+        private final TextView textViewDyslexia;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +105,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             textViewNameAndAge = itemView.findViewById(R.id.textViewNameAndAge);
             textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
             textViewScore = itemView.findViewById(R.id.textViewScore);
+            textViewDyslexia = itemView.findViewById(R.id.textViewDyslexia);
         }
 
         public Context getContext() {
@@ -117,6 +126,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         public TextView getTextViewScore() {
             return textViewScore;
+        }
+
+        public TextView getTextViewDyslexia() {
+            return textViewDyslexia;
         }
     }
 }

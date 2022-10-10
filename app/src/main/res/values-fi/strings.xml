@@ -5,6 +5,13 @@
     <!-- Main Activity -->
     <string name="name_header">Nimi</string>
     <string name="age_header">Ikä</string>
+    <string name="age_min_message">Ikä tulee olla 7 tai enemmän</string>
+    <string name="age_max_message">Ikä tulee olla 14 tai vähemmän</string>
+    <string name="dyslexia_possible">Lukihäiriö havaittu: %s</string>
+    <string-array name="dyslexiaPossibleOptions">
+        <item>Kyllä</item>
+        <item>Ei</item>
+    </string-array>
 
     <string name="error_empty_name">Sinun täytyy täyttää nimi.</string>
     <string name="error_empty_age">Sinun täytyy täyttää ikä.</string>
@@ -36,6 +43,7 @@
     <string name="score_message">Pisteet: %s</string>
     <string name="undo_button">Peruuta</string>
     <string name="deleted_message">Valittu testi poistettu</string>
+    <string name="answer_empty">Vastaus ei voi olla tyhjä</string>>
 
     <!-- Selection Fragment -->
     <string-array name="wordSet1">

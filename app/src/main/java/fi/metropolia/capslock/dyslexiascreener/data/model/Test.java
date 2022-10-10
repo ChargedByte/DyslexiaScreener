@@ -117,6 +117,20 @@ public class Test {
         this.availablePoints += value;
     }
 
+    public boolean isDyslexiaPossible() {
+        double score = studentPoints / (double) availablePoints;
+
+        if (studentAge <= 9) {
+            return score < 0.75;
+        } else if (studentAge <= 12) {
+            return score < 0.85;
+        } else if (studentAge <= 14) {
+            return score < 0.95;
+        }
+
+        return false;
+    }
+
     @NonNull
     @Override
     public String toString() {

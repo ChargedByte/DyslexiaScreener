@@ -53,15 +53,14 @@ public class SelectionFragment extends ExerciseFragment {
             return;
         }
 
-        int resId = requireArguments().getInt(ARG_ITEMS);
+        int resId = viewModel.getResourcesSelection().removeFirst();
         String[] array = getResources().getStringArray(resId);
 
-        int correctIndex = requireArguments().getInt(ARG_CORRECT_ANSWER);
-        correctAnswer = correctIndex == -1 ? RandomUtil.item(array) : array[correctIndex];
+        correctAnswer = RandomUtil.item(array);
 
         items = new ArrayList<>();
 
-        int itemCount = correctAnswer.length() == 1 ? 40 : 32;
+        int itemCount = correctAnswer.length() == 1 ? 40 : 20;
         for (int i = 0; i < itemCount; i++) {
             items.add(RandomUtil.item(array));
         }
@@ -122,9 +121,16 @@ public class SelectionFragment extends ExerciseFragment {
 
     @Override
     public int getScoredPoints() {
-        return (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+        int incorrectSelection = (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+            .mapToInt(Long::intValue)
+            .filter(x -> !items.get(x).equals(correctAnswer))
+            .count();
+
+        int correctSelection = (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
             .mapToInt(Long::intValue)
             .filter(x -> items.get(x).equals(correctAnswer))
             .count();
+
+        return correctSelection - incorrectSelection;
     }
 }

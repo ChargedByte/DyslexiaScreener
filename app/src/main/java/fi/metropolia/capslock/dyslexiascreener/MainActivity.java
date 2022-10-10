@@ -48,10 +48,6 @@ public class MainActivity extends BaseActivity {
                 String studentName = editTextName.getText().toString();
                 int studentAge = Integer.parseInt(editTextAge.getText().toString());
 
-                if (studentAge > 13) {
-                    // TODO: Age warning
-                }
-
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, studentName);
                 intent.putExtra(SharedConstants.EXTRA_STUDENT_AGE, studentAge);
@@ -122,6 +118,17 @@ public class MainActivity extends BaseActivity {
 
         if (studentAge < 0) {
             editTextAge.setError(getResources().getString(R.string.error_negative_age));
+            return false;
+        }
+
+        if (studentAge < 7) {
+            editTextAge.setError(getResources().getString(R.string.age_min_message));
+            return false;
+        }
+
+        if (studentAge > 14) {
+            editTextAge.setError(getResources().getString(R.string.age_max_message));
+            return false;
         }
 
         return true;

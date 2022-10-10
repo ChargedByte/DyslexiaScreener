@@ -127,10 +127,18 @@ public class ReverseLettersFragment extends ExerciseFragment {
 
     @Override
     public int getScoredPoints() {
-        return (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+        int incorrectSelections = (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
+            .mapToInt(Long::intValue)
+            .mapToObj(x -> items.get(x))
+            .filter(x -> !x.isReversed())
+            .count();
+
+        int correctSelections = (int) StreamSupport.stream(tracker.getSelection().spliterator(), false)
             .mapToInt(Long::intValue)
             .mapToObj(x -> items.get(x))
             .filter(ReverseLetter::isReversed)
             .count();
+        
+        return correctSelections - incorrectSelections;
     }
 }

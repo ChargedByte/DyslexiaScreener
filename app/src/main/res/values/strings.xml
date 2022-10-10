@@ -4,6 +4,13 @@
     <!-- Main Activity -->
     <string name="name_header">Name</string>
     <string name="age_header">Age</string>
+    <string name="age_min_message">Age should be 7 or more</string>
+    <string name="age_max_message">Age should be 14 or less</string>
+    <string name="dyslexia_possible">Dyslexia observed: %s</string>
+    <string-array name="dyslexiaPossibleOptions">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 
     <string name="error_empty_name">You must provide a name.</string>
     <string name="error_empty_age">You must provide a age.</string>
@@ -78,6 +85,7 @@
     <string name="word_monkey">Monkey</string>
     <string name="word_herring">Herring</string>
     <string name="word_evil">Evil</string>
+    <string name="answer_empty">Answer can\'t be empty</string>
 
     <!-- Test End Activity -->
     <string name="thank_you_message">Thank you, %s!</string>

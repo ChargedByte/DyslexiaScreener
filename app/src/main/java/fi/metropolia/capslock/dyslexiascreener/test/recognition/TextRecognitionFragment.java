@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
@@ -20,17 +22,26 @@ import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
  * @author Joel Tikkanen
  */
 public class TextRecognitionFragment extends ExerciseFragment {
+    private static final String STATE_ITEM = "item";
     private static final String STATE_TEXT = "textWord";
 
-    private static RecognizableWord[] recognizableWords = {
-        new RecognizableWord(R.drawable.evil, R.string.word_evil),
-        new RecognizableWord(R.drawable.herring, R.string.word_herring),
-        new RecognizableWord(R.drawable.monkey, R.string.word_monkey),
-    };
-
+    private ImageView imageView;
     private EditText editText;
 
+    private RecognizableWord item;
+
     public TextRecognitionFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            item = new Gson().fromJson(savedInstanceState.getString(STATE_ITEM), RecognizableWord.class);
+        }
+
+        item = viewModel.getRecognizableWords().removeFirst();
     }
 
     @Override
@@ -42,6 +53,7 @@ public class TextRecognitionFragment extends ExerciseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        imageView = view.findViewById(R.id.imageViewWord);
         editText = view.findViewById(R.id.editTextWord);
 
         if (savedInstanceState != null) {
@@ -51,12 +63,21 @@ public class TextRecognitionFragment extends ExerciseFragment {
                 editText.setText(text);
         }
 
+        imageView.setImageResource(item.getDrawableResId());
+
         FloatingActionButton floatingActionButtonNext = view.findViewById(R.id.floatingActionButtonNext);
-        floatingActionButtonNext.setOnClickListener(v -> viewModel.getExerciseCompleted().postValue(null));
+        floatingActionButtonNext.setOnClickListener(v -> {
+            if (editText.getText().toString().isBlank()) {
+                editText.setError(getResources().getString(R.string.answer_empty));
+                return;
+            }
+            viewModel.getExerciseCompleted().postValue(null);
+        });
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(STATE_ITEM, new Gson().toJson(item));
         outState.putString(STATE_TEXT, editText.getText().toString());
         super.onSaveInstanceState(outState);
     }
@@ -68,6 +89,8 @@ public class TextRecognitionFragment extends ExerciseFragment {
 
     @Override
     public int getScoredPoints() {
+        if (editText.getText().toString().equals(getResources().getString(item.getStringResId())))
+            return 1;
         return 0;
     }
 }

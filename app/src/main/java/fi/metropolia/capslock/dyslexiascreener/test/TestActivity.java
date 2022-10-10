@@ -3,9 +3,9 @@ package fi.metropolia.capslock.dyslexiascreener.test;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import fi.metropolia.capslock.dyslexiascreener.BaseActivity;
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
@@ -15,9 +15,10 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
  *
  * @author Peetu Saarinen
  */
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends BaseActivity {
     private TestViewModel viewModel;
 
+    private ExerciseFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,28 @@ public class TestActivity extends AppCompatActivity {
         viewModel.setTest(new Test(studentName, studentAge));
 
         if (savedInstanceState == null) {
+            fragment = viewModel.getFragments().removeFirst();
 
+            getSupportFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentContainerViewExercise, fragment)
+                .commit();
         }
 
         viewModel.getExerciseCompleted().observe(this, obj -> {
+            viewModel.getTest().addAvailablePoints(fragment.getAvailablePoints());
+            viewModel.getTest().addStudentPoints(fragment.getScoredPoints());
 
+            fragment = viewModel.getFragments().pollFirst();
+            if (fragment != null) {
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragmentContainerViewExercise, fragment)
+                    .commit();
+                return;
+            }
 
             viewModel.saveTest(viewModel.getTest());
 
