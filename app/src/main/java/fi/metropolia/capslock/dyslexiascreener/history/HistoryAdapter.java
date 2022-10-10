@@ -60,13 +60,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         String possible = item.isDyslexiaPossible() ? array[0] : array[1];
 
         holder.getTextViewDyslexia()
-                .setText(String.format(resources.getString(R.string.dyslexia_possible), possible));
+            .setText(String.format(resources.getString(R.string.dyslexia_possible), possible));
 
         holder.getTextViewNameAndAge()
             .setText(String.format("%s, %s", item.getStudentName(), String.format(resources.getString(R.string.age_message), item.getStudentAge())));
 
         holder.getTextViewDateTime()
-            .setText(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(item.getTimestamp()));
+            .setText(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .withLocale(holder.getContext().getResources().getConfiguration().getLocales().get(0))
+                .format(item.getTimestamp()));
 
         holder.getTextViewScore()
             .setText(String.format(resources.getString(R.string.score_message),
