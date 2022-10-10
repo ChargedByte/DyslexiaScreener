@@ -13,7 +13,7 @@ import fi.metropolia.capslock.dyslexiascreener.data.dao.TestDao;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
- * Configuration for the application's Room database
+ * Configuration for the application's Room database.
  *
  * @author Peetu Saarinen
  */

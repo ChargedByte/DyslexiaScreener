@@ -11,7 +11,7 @@ import fi.metropolia.capslock.dyslexiascreener.data.ScreeningDatabase;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
- * ViewModel for the {@link HistoryActivity}.
+ * {@link AndroidViewModel} for the {@link HistoryActivity}.
  *
  * @author Peetu Saarinen
  */

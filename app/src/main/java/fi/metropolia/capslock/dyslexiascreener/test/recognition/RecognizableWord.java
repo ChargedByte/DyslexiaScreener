@@ -4,6 +4,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 
 /**
+ * Class for holding an image resource and the associated string resource.
+ *
  * @author Joel Tikkanen
  */
 public class RecognizableWord {

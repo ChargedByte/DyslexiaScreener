@@ -2,6 +2,11 @@ package fi.metropolia.capslock.dyslexiascreener.test.reverse;
 
 import androidx.annotation.DrawableRes;
 
+/**
+ * Class for holding an image resource of a letter and whether that image is reversed.
+ *
+ * @author Joonas Jouttijärvi
+ */
 public class ReverseLetter {
     @DrawableRes
     private final int resId;

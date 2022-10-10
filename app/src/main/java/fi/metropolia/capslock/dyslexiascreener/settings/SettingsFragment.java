@@ -11,8 +11,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
-import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
+import fi.metropolia.capslock.dyslexiascreener.*;
 
 /**
  * Fragment that displays application's settings and saves them automatically.

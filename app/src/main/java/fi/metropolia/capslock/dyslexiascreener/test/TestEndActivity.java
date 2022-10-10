@@ -7,10 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
-import fi.metropolia.capslock.dyslexiascreener.BaseActivity;
-import fi.metropolia.capslock.dyslexiascreener.MainActivity;
-import fi.metropolia.capslock.dyslexiascreener.R;
-import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
+import fi.metropolia.capslock.dyslexiascreener.*;
 
 /**
  * Activity for thanking the user after a test and sending them back to the start.

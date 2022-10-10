@@ -20,14 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemDetailsLookup;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemKeyProvider;
 import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
 
 /**
- * Fragment where the user has to select the correct items from a grid.
+ * {@link ExerciseFragment} where the user has to select the correct items from a grid.
  *
  * @author Joel Tikkanen
  */

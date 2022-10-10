@@ -5,6 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemKeyProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
+
+/**
+ * {@link ItemKeyProvider} for the {@link ReverseLettersFragment}'s selection functionality.
+ *
+ * @author Peetu Saarinen
+ */
 public class ReverseLetterItemKeyProvider extends ItemKeyProvider<Long> {
     private final RecyclerView recyclerView;
 

@@ -22,7 +22,7 @@ public interface TestDao {
      * Insert the provided entity to the table.
      * In case of a conflict, the row in the database is replaced.
      *
-     * @param entity the {@link Test} entity to be inserted
+     * @param entity The {@link Test} entity to be inserted
      * @return A <code>long</code> that holds the id of the inserted entity
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -40,7 +40,7 @@ public interface TestDao {
     /**
      * Find the entity that matches the provided id.
      *
-     * @param id the id of the desired entity
+     * @param id The id of the desired entity
      * @return A {@link Test} entity or <code>null</code> if nothing was found
      */
     @Query("SELECT * FROM tests WHERE id = :id")

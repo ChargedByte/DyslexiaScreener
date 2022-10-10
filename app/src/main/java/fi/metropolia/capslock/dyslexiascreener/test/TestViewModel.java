@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayDeque;
 import java.util.List;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.data.ScreeningDatabase;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 import fi.metropolia.capslock.dyslexiascreener.test.recognition.RecognizableWord;
@@ -19,7 +19,7 @@ import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragme
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
 
 /**
- * ViewModel for the {@link TestActivity}.
+ * {@link AndroidViewModel} for the {@link TestActivity} and {@link ExerciseFragment}s.
  *
  * @author Peetu Saarinen
  */

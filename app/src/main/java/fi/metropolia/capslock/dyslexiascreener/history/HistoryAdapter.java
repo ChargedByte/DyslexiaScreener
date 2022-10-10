@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.List;
 
-import fi.metropolia.capslock.dyslexiascreener.R;
+import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
