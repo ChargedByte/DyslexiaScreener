@@ -1,44 +1,34 @@
 package fi.metropolia.capslock.dyslexiascreener;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import fi.metropolia.capslock.dyslexiascreener.history.HistoryActivity;
 import fi.metropolia.capslock.dyslexiascreener.settings.SettingsActivity;
-import fi.metropolia.capslock.dyslexiascreener.utils.LocalizationUtil;
+import fi.metropolia.capslock.dyslexiascreener.test.TestActivity;
 
 /**
- * Application entrypoint, first activity loaded when the app starts.
+ * Activity loaded first when the application starts.
  *
  * @author Joel Tikkanen
  * @author Joonas Jouttijärvi
  * @author Peetu Saarinen
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+    private static final String STATE_NAME = "studentName";
+    private static final String STATE_AGE = "studentAge";
 
     private EditText editTextName;
     private EditText editTextAge;
-    private FloatingActionButton floatingActionButton;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(newBase);
-        String language = sharedPreferences.getString("language", "en");
-        super.attachBaseContext(LocalizationUtil.applyLanguage(newBase, language));
-    }
+    private FloatingActionButton floatingActionButtonStartTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +36,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
+        if (actionBar != null)
             actionBar.setTitle(R.string.app_name);
-        }
 
         editTextName = findViewById(R.id.editTextName);
         editTextAge = findViewById(R.id.editTextAge);
-        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButtonStartTest = findViewById(R.id.floatingActionButtonStartTest);
 
-        floatingActionButton.setOnClickListener(this::startTest);
+        floatingActionButtonStartTest.setOnClickListener(v -> {
+            if (validateInputs()) {
+                String studentName = editTextName.getText().toString();
+                int studentAge = Integer.parseInt(editTextAge.getText().toString());
 
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra(SharedConstants.EXTRA_STUDENT_NAME, studentName);
+                intent.putExtra(SharedConstants.EXTRA_STUDENT_AGE, studentAge);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(STATE_NAME, editTextName.getText().toString());
+        outState.putString(STATE_AGE, editTextAge.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        editTextName.setText(savedInstanceState.getString(STATE_NAME));
+        editTextAge.setText(savedInstanceState.getString(STATE_AGE));
     }
 
     @Override
@@ -67,30 +78,59 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuItemSettings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                return true;
-            case R.id.menuItemHistory:
-                startActivity(new Intent(this, HistoryActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuItemSettings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        } else if (itemId == R.id.menuItemHistory) {
+            startActivity(new Intent(this, HistoryActivity.class));
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
-     * Start the test with given name and age.
+     * Verifies if the user inputs provided match the requirements.
      *
-     * @param view A {@link View} of item clicked
+     * @return <code>true</code> if all checks passed, otherwise <code>false</code>
      */
-    public void startTest(View view) {
-        //String name = editTextName.getText().toString();
-        //int age = Integer.parseInt(editTextAge.getText().toString());
+    private boolean validateInputs() {
+        String nameText = editTextName.getText().toString();
+        String ageText = editTextAge.getText().toString();
 
-        // TODO: Start test
-        startActivity(new Intent(this, TextRecognition.class));
+        if (nameText.isBlank()) {
+            editTextName.setError(getResources().getString(R.string.error_empty_name));
+            return false;
+        }
 
+        if (ageText.isBlank()) {
+            editTextAge.setError(getResources().getString(R.string.error_empty_age));
+            return false;
+        }
+
+        int studentAge;
+        try {
+            studentAge = Integer.parseInt(ageText);
+        } catch (NumberFormatException ex) {
+            editTextAge.setError(getResources().getString(R.string.error_invalid_age));
+            return false;
+        }
+
+        if (studentAge < 0) {
+            editTextAge.setError(getResources().getString(R.string.error_negative_age));
+            return false;
+        }
+
+        if (studentAge < 7) {
+            editTextAge.setError(getResources().getString(R.string.age_min_message));
+            return false;
+        }
+
+        if (studentAge > 14) {
+            editTextAge.setError(getResources().getString(R.string.age_max_message));
+            return false;
+        }
+
+        return true;
     }
-
 }

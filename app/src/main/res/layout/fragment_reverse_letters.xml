@@ -4,37 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectionActivity">
-
-    <GridView
-        android:id="@+id/letterGrid"
-        android:layout_width="605dp"
-        android:layout_height="303dp"
-        android:layout_marginTop="52dp"
-        android:numColumns="6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></GridView>
+    tools:context=".test.reverse.ReverseLettersFragment">
 
     <TextView
-        android:id="@+id/itemCaption"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewInstructions"
+        style="@style/TextAppearance.Material3.LabelLarge"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Paina jokaista kohtaa, missä lukee"
-        android:textSize="20sp"
+        android:layout_marginEnd="16dp"
+        android:hint="Instructions"
+        android:text="@string/reverse_letters_instructions"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:tint="?attr/colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_navigate_next_24" />

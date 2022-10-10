@@ -4,62 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:orientation="horizontal"
+    tools:context=".test.selection.SelectionFragment">
 
     <TextView
-        android:id="@+id/textViewLabelName"
+        android:id="@+id/textViewInstructions"
         style="@style/TextAppearance.Material3.LabelLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/name_header"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextName"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/name_header"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:hint="Instructions"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewLabelName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewLabelAge"
-        style="@style/TextAppearance.Material3.LabelLarge"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/age_header"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextAge"
-        app:layout_constraintEnd_toStartOf="@+id/editTextAge"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextAge"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/age_header"
-        android:inputType="number"
-        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonNext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonStartTest"
+        android:id="@+id/floatingActionButtonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

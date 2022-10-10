@@ -11,7 +11,7 @@ android {
         minSdk 28
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -89,6 +89,15 @@ dependencies {
 
     // Android Preferences
     implementation 'androidx.preference:preference:1.2.0'
+
+    // Android Fragments
+    implementation 'androidx.fragment:fragment:1.5.3'
+
+    // Android RecyclerView Selection
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+
+    // Google Gson
+    implementation 'com.google.code.gson:gson:2.9.1'
 }
 
 configurations {

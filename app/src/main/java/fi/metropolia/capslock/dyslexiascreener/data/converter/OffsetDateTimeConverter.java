@@ -5,7 +5,7 @@ import androidx.room.TypeConverter;
 import java.time.OffsetDateTime;
 
 /**
- * Converter-class for storing {@link OffsetDateTime}s in a Room database.
+ * Converter for storing {@link OffsetDateTime}s in a Room database.
  *
  * @author Peetu Saarinen
  */

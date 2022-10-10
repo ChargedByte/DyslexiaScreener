@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimarySurface"
+    tools:context=".test.TestEndActivity">
+
+    <TextView
+        android:id="@+id/textViewThankYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Thank You"
+        android:textColor="?attr/colorOnPrimarySurface"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSaved"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/saved_message"
+        android:textColor="?attr/colorOnPrimarySurface"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReturnHome"
+        app:layout_constraintEnd_toEndOf="@+id/textViewThankYou"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textViewThankYou"
+        app:layout_constraintTop_toBottomOf="@+id/textViewThankYou" />
+
+    <Button
+        android:id="@+id/buttonReturnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="?attr/colorSecondary"
+        android:text="@string/return_home_button"
+        android:textColor="?attr/colorOnSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewSaved"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textViewSaved"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSaved" />
+</androidx.constraintlayout.widget.ConstraintLayout>

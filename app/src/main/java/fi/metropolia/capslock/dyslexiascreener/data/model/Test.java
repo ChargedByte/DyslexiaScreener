@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.time.OffsetDateTime;
 
 /**
- * Entity / Data-class that represents a single take of the test
+ * Entity that represents a single take of the test
  *
  * @author Peetu Saarinen
  */
@@ -91,12 +91,44 @@ public class Test {
         this.studentPoints = studentPoints;
     }
 
+    /**
+     * Increases student's points with the provided value.
+     *
+     * @param value A <code>int</code> to add to the student's points
+     */
+    public void addStudentPoints(int value) {
+        this.studentPoints += value;
+    }
+
     public int getAvailablePoints() {
         return availablePoints;
     }
 
     public void setAvailablePoints(int availablePoints) {
         this.availablePoints = availablePoints;
+    }
+
+    /**
+     * Increases available points with the provided value.
+     *
+     * @param value A <code>int</code> to add to the available points
+     */
+    public void addAvailablePoints(int value) {
+        this.availablePoints += value;
+    }
+
+    public boolean isDyslexiaPossible() {
+        double score = studentPoints / (double) availablePoints;
+
+        if (studentAge <= 9) {
+            return score < 0.75;
+        } else if (studentAge <= 12) {
+            return score < 0.85;
+        } else if (studentAge <= 14) {
+            return score < 0.95;
+        }
+
+        return false;
     }
 
     @NonNull

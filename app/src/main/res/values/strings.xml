@@ -4,6 +4,18 @@
     <!-- Main Activity -->
     <string name="name_header">Name</string>
     <string name="age_header">Age</string>
+    <string name="age_min_message">Age should be 7 or more</string>
+    <string name="age_max_message">Age should be 14 or less</string>
+    <string name="dyslexia_possible">Dyslexia observed: %s</string>
+    <string-array name="dyslexiaPossibleOptions">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="error_empty_name">You must provide a name.</string>
+    <string name="error_empty_age">You must provide a age.</string>
+    <string name="error_invalid_age">Input is not a number.</string>
+    <string name="error_negative_age">Age can\'t be a negative number.</string>
 
     <!-- Settings Activity -->
     <string name="settings_header">Settings</string>
@@ -13,15 +25,70 @@
     <string name="timer_enabled_description">Set a time limit for the test</string>
     <string name="time_limit_header">Time limit</string>
     <string name="select_time_description">%d minutes</string>
-    <string name="question_count_header">Number of questions</string>
+    <string name="exercises_number_header">Number of exercises</string>
     <string name="select_question_count_description">%d questions</string>
     <string name="language_header">Language</string>
     <string name="restart_button">Restart</string>
     <string name="restart_message">Restart to apply the language?</string>
 
+    <string-array name="supportedLanguageCodes" translatable="false">
+        <item>en</item>
+        <item>fi</item>
+    </string-array>
+
+    <string-array name="supportedLanguages">
+        <item>English</item>
+        <item>Finnish</item>
+    </string-array>
+
     <!-- History Activity -->
     <string name="history_header">History</string>
     <string name="age_message">%dyo</string>
     <string name="score_message">Score: %s</string>
-    <string name="probability_message">Probability: %s</string>
+    <string name="undo_button">Undo</string>
+    <string name="deleted_message">Selected test deleted</string>
+
+    <!-- Selection Fragment -->
+    <string-array name="letterSet1">
+        <item>b</item>
+        <item>d</item>
+        <item>p</item>
+        <item>q</item>
+    </string-array>
+
+    <string-array name="letterSet2">
+        <item>e</item>
+        <item>s</item>
+        <item>x</item>
+        <item>z</item>
+    </string-array>
+
+    <string-array name="wordSet1">
+        <item>was</item>
+        <item>raw</item>
+        <item>saw</item>
+        <item>way</item>
+        <item>win</item>
+        <item>war</item>
+        <item>why</item>
+    </string-array>
+
+    <string name="selection_instructions_word">Select all words \'%s\'.</string>
+    <string name="selection_instructions_letter">Select all letters \'%s\'.</string>
+
+    <!-- Reverse Letters Fragment -->
+    <string name="reverse_letters_instructions">Select all letters that are reversed.</string>
+
+    <!-- Text Recognition Fragment -->
+    <string name="answer_hint">Answer</string>
+    <string name="text_recognition_instructions">Type the word you see in the image to the text field.</string>
+    <string name="word_monkey">Monkey</string>
+    <string name="word_herring">Herring</string>
+    <string name="word_evil">Evil</string>
+    <string name="answer_empty">Answer can\'t be empty</string>
+
+    <!-- Test End Activity -->
+    <string name="thank_you_message">Thank you, %s!</string>
+    <string name="saved_message">Your test has been saved.</string>
+    <string name="return_home_button">Back Home</string>
 </resources>

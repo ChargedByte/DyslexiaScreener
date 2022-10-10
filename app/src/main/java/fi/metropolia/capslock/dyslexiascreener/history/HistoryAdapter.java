@@ -2,40 +2,43 @@ package fi.metropolia.capslock.dyslexiascreener.history;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Arrays;
 import java.util.List;
 
 import fi.metropolia.capslock.dyslexiascreener.R;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
- * Extension-class to {@link RecyclerView.Adapter} for displaying {@link Test} entities in the {@link HistoryActivity}.
+ * Extension to {@link RecyclerView.Adapter} for displaying {@link Test} entities in the {@link HistoryActivity}.
  *
  * @author Peetu Saarinen
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
-    private List<Test> items;
+    private final List<Test> items;
 
-    /**
-     * Constructs a {@link HistoryAdapter} class with an empty <code>items</code> list.
-     */
-    public HistoryAdapter() {
-        //this.items = Collections.emptyList();
-        this.items = Arrays.asList(new Test("Test Name 1", 8), new Test("Test Name 2", 13), new Test("Test Name 3", 10));
+    private final MutableLiveData<Pair<Integer, Test>> itemDeleted = new MutableLiveData<>();
+
+    public HistoryAdapter(List<Test> items) {
+        this.items = items;
     }
 
-    public void setItems(List<Test> items) {
-        this.items = items;
+    public List<Test> getItems() {
+        return items;
+    }
+
+    public MutableLiveData<Pair<Integer, Test>> getItemDeleted() {
+        return itemDeleted;
     }
 
     @NonNull
@@ -52,7 +55,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Context context = holder.itemView.getContext();
         Resources resources = context.getResources();
 
-        String probability = resources.getStringArray(R.array.probabilities)[0]; // TODO: Calculate probability
+        String[] array = resources.getStringArray(R.array.dyslexiaPossibleOptions);
+
+        String possible = item.isDyslexiaPossible() ? array[0] : array[1];
+
+        holder.getTextViewDyslexia()
+                .setText(String.format(resources.getString(R.string.dyslexia_possible), possible));
 
         holder.getTextViewNameAndAge()
             .setText(String.format("%s, %s", item.getStudentName(), String.format(resources.getString(R.string.age_message), item.getStudentAge())));
@@ -60,12 +68,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.getTextViewDateTime()
             .setText(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(item.getTimestamp()));
 
-        holder.getTextViewProbability()
-            .setText(String.format(resources.getString(R.string.probability_message), probability));
-
         holder.getTextViewScore()
             .setText(String.format(resources.getString(R.string.score_message),
                 item.getStudentPoints() + "/" + item.getAvailablePoints()));
+
+        holder.getItemView().setOnLongClickListener(v -> {
+            items.remove(item);
+            itemDeleted.postValue(Pair.create(position, item));
+            return true;
+        });
     }
 
     @Override
@@ -74,23 +85,35 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     /**
-     * Extension-class to {@link RecyclerView.ViewHolder} that provides {@link HistoryAdapter} with the elements in the item {@link View}.
+     * Extension to {@link RecyclerView.ViewHolder} that provides {@link HistoryAdapter} with the elements in the item {@link View}.
      *
      * @author Peetu Saarinen
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        private final View itemView;
         private final TextView textViewNameAndAge;
         private final TextView textViewDateTime;
-        private final TextView textViewProbability;
         private final TextView textViewScore;
+        private final TextView textViewDyslexia;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            context = itemView.getContext();
+            this.itemView = itemView;
             textViewNameAndAge = itemView.findViewById(R.id.textViewNameAndAge);
             textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
-            textViewProbability = itemView.findViewById(R.id.textViewProbability);
             textViewScore = itemView.findViewById(R.id.textViewScore);
+            textViewDyslexia = itemView.findViewById(R.id.textViewDyslexia);
+        }
+
+        public Context getContext() {
+            return context;
+        }
+
+        public View getItemView() {
+            return itemView;
         }
 
         public TextView getTextViewNameAndAge() {
@@ -101,12 +124,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             return textViewDateTime;
         }
 
-        public TextView getTextViewProbability() {
-            return textViewProbability;
-        }
-
         public TextView getTextViewScore() {
             return textViewScore;
+        }
+
+        public TextView getTextViewDyslexia() {
+            return textViewDyslexia;
         }
     }
 }

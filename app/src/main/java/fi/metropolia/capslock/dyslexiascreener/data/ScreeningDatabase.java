@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import fi.metropolia.capslock.dyslexiascreener.SharedConstants;
 import fi.metropolia.capslock.dyslexiascreener.data.converter.OffsetDateTimeConverter;
 import fi.metropolia.capslock.dyslexiascreener.data.dao.TestDao;
 import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
@@ -23,7 +24,8 @@ public abstract class ScreeningDatabase extends RoomDatabase {
 
     public static synchronized ScreeningDatabase getInstance(Context context) {
         if (instance == null)
-            instance = Room.databaseBuilder(context, ScreeningDatabase.class, "screening_database").build();
+            instance = Room.databaseBuilder(context, ScreeningDatabase.class, SharedConstants.DATABASE_NAME)
+                .allowMainThreadQueries().build();
         return instance;
     }
 
