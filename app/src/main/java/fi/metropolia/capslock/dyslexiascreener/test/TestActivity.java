@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.lifecycle.ViewModelProvider;
 
 import fi.metropolia.capslock.dyslexiascreener.*;
-import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
 
 /**
  * Activity for handling the {@link ExerciseFragment}s and the test process.
@@ -15,8 +14,6 @@ import fi.metropolia.capslock.dyslexiascreener.data.model.Test;
  */
 public class TestActivity extends BaseActivity {
     private TestViewModel viewModel;
-
-    private ExerciseFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +26,28 @@ public class TestActivity extends BaseActivity {
         String studentName = intent.getStringExtra(SharedConstants.EXTRA_STUDENT_NAME);
         int studentAge = intent.getIntExtra(SharedConstants.EXTRA_STUDENT_AGE, -1);
 
-        viewModel.setTest(new Test(studentName, studentAge));
-
         if (savedInstanceState == null) {
-            fragment = viewModel.getFragments().removeFirst();
+            viewModel.createTest(studentName, studentAge);
 
+            viewModel.nextFragment();
             getSupportFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragmentContainerViewExercise, fragment)
+                .replace(R.id.fragmentContainerViewExercise, viewModel.getCurrentFragment())
                 .commit();
         }
 
         viewModel.getExerciseCompleted().observe(this, obj -> {
-            viewModel.getTest().addAvailablePoints(fragment.getAvailablePoints());
-            viewModel.getTest().addStudentPoints(fragment.getScoredPoints());
+            viewModel.getTest().addAvailablePoints(viewModel.getCurrentFragment().getAvailablePoints());
+            viewModel.getTest().addStudentPoints(viewModel.getCurrentFragment().getScoredPoints());
 
-            fragment = viewModel.getFragments().pollFirst();
-            if (fragment != null) {
+
+            viewModel.nextFragment();
+            if (viewModel.getCurrentFragment() != null) {
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragmentContainerViewExercise, fragment)
+                    .replace(R.id.fragmentContainerViewExercise, viewModel.getCurrentFragment())
                     .commit();
                 return;
             }
