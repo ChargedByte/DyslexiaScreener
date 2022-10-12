@@ -3,6 +3,7 @@ package fi.metropolia.capslock.dyslexiascreener.test;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.ViewModelProvider;
 
 import fi.metropolia.capslock.dyslexiascreener.*;
@@ -26,10 +27,18 @@ public class TestActivity extends BaseActivity {
         String studentName = intent.getStringExtra(SharedConstants.EXTRA_STUDENT_NAME);
         int studentAge = intent.getIntExtra(SharedConstants.EXTRA_STUDENT_AGE, -1);
 
+        ActionBar actionBar = getSupportActionBar();
+
         if (savedInstanceState == null) {
             viewModel.createTest(studentName, studentAge);
 
             viewModel.nextFragment();
+
+            if (actionBar != null) {
+                actionBar.setTitle(String.format(getResources().getString(R.string.exercise_title),
+                    viewModel.getCurrentExerciseNumber(), viewModel.getTotalExerciseCount()));
+            }
+
             getSupportFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
@@ -44,6 +53,11 @@ public class TestActivity extends BaseActivity {
 
             viewModel.nextFragment();
             if (viewModel.getCurrentFragment() != null) {
+                if (actionBar != null) {
+                    actionBar.setTitle(String.format(getResources().getString(R.string.exercise_title),
+                        viewModel.getCurrentExerciseNumber(), viewModel.getTotalExerciseCount()));
+                }
+
                 getSupportFragmentManager()
                     .beginTransaction()
                     .setReorderingAllowed(true)

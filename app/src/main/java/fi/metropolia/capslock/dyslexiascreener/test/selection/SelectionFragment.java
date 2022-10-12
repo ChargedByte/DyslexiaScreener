@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.selection.SelectionPredicates;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,6 +23,7 @@ import fi.metropolia.capslock.dyslexiascreener.*;
 import fi.metropolia.capslock.dyslexiascreener.test.ExerciseFragment;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemDetailsLookup;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.selection.SelectionItemKeyProvider;
+import fi.metropolia.capslock.dyslexiascreener.utils.EmptyItemDetails;
 import fi.metropolia.capslock.dyslexiascreener.utils.RandomUtil;
 
 /**
@@ -94,7 +94,22 @@ public class SelectionFragment extends ExerciseFragment {
             new SelectionItemKeyProvider(recyclerViewItems),
             new SelectionItemDetailsLookup(recyclerViewItems),
             StorageStrategy.createLongStorage()
-        ).withSelectionPredicate(SelectionPredicates.createSelectAnything()).build();
+        ).withSelectionPredicate(new SelectionTracker.SelectionPredicate<>() {
+            @Override
+            public boolean canSetStateForKey(@NonNull Long key, boolean nextState) {
+                return key != EmptyItemDetails.EMPTY_ITEM_KEY;
+            }
+
+            @Override
+            public boolean canSetStateAtPosition(int position, boolean nextState) {
+                return position != EmptyItemDetails.EMPTY_ITEM_KEY;
+            }
+
+            @Override
+            public boolean canSelectMultiple() {
+                return true;
+            }
+        }).build();
 
         if (savedInstanceState != null) {
             tracker.onRestoreInstanceState(savedInstanceState);

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionAdapter;
 import fi.metropolia.capslock.dyslexiascreener.test.selection.SelectionFragment;
+import fi.metropolia.capslock.dyslexiascreener.utils.EmptyItemDetails;
 
 /**
  * {@link ItemDetailsLookup} for the {@link SelectionFragment}'s selection functionality.
@@ -30,6 +31,6 @@ public class SelectionItemDetailsLookup extends ItemDetailsLookup<Long> {
         if (view != null) {
             return ((SelectionAdapter.ViewHolder) recyclerView.getChildViewHolder(view)).getItemDetails();
         }
-        return null;
+        return new EmptyItemDetails();
     }
 }

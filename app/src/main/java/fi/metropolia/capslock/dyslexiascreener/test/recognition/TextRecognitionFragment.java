@@ -92,6 +92,6 @@ public class TextRecognitionFragment extends ExerciseFragment {
         String expected = getResources().getString(item.getStringResId());
         if (editText.getText().toString().equalsIgnoreCase(expected))
             return 1;
-        return 0;
+        return -1;
     }
 }

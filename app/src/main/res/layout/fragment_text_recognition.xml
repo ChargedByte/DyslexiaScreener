@@ -17,6 +17,7 @@
         android:hint="Instructions"
         android:text="@string/text_recognition_instructions"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,8 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions"
-        tools:src="@drawable/smudgedahven" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewInstructions" />
 
     <EditText
         android:id="@+id/editTextWord"

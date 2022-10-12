@@ -45,10 +45,13 @@ public class TestViewModel extends AndroidViewModel {
 
     private Test test;
     private ExerciseFragment currentFragment;
+    private final int totalExerciseCount;
+    private int currentExerciseNumber = 0;
 
     public TestViewModel(@NonNull Application application) {
         super(application);
         database = ScreeningDatabase.getInstance(application);
+        totalExerciseCount = fragments.size();
     }
 
     public Test getTest() {
@@ -81,6 +84,14 @@ public class TestViewModel extends AndroidViewModel {
         return currentFragment;
     }
 
+    public int getTotalExerciseCount() {
+        return totalExerciseCount;
+    }
+
+    public int getCurrentExerciseNumber() {
+        return currentExerciseNumber;
+    }
+
     /**
      * Proceed to the next {@link ExerciseFragment} in the test.
      * <p>
@@ -88,6 +99,9 @@ public class TestViewModel extends AndroidViewModel {
      */
     public void nextFragment() {
         currentFragment = fragments.pollFirst();
+        if (currentFragment != null) {
+            currentExerciseNumber++;
+        }
     }
 
     /**

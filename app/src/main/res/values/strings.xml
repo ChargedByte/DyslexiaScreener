@@ -48,6 +48,9 @@
     <string name="undo_button">Undo</string>
     <string name="deleted_message">Selected test deleted</string>
 
+    <!-- Test Activity -->
+    <string name="exercise_title">Exercise %d/%d</string>
+
     <!-- Selection Fragment -->
     <string-array name="letterSet1">
         <item>b</item>
