@@ -11,11 +11,11 @@ at [Metropolia University of Applied Sciences](https://www.metropolia.fi/en) by:
 - Joel Tikkanen (@zzokku)
 - Peetu Saarinen (@ChargedByte)
 
-## Building
+## Development
 
 A quick rundown of how to build the project.
 
-### Requirments
+### Requirements
 
 - Android Studio Dolphin 2021.3.1 or later
 - Java Development Kit 11+ (Usually bundled with Android Studio)
