@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersAdapter;
 import fi.metropolia.capslock.dyslexiascreener.test.reverse.ReverseLettersFragment;
+import fi.metropolia.capslock.dyslexiascreener.utils.EmptyItemDetails;
 
 /**
  * {@link ItemDetailsLookup} for the {@link ReverseLettersFragment}'s selection functionality.
@@ -30,6 +31,6 @@ public class ReverseLetterItemLookup extends ItemDetailsLookup<Long> {
         if (view != null) {
             return ((ReverseLettersAdapter.ViewHolder) recyclerView.getChildViewHolder(view)).getItemDetails();
         }
-        return null;
+        return new EmptyItemDetails();
     }
 }

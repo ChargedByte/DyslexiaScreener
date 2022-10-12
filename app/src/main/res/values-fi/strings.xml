@@ -45,6 +45,9 @@
     <string name="deleted_message">Valittu testi poistettu</string>
     <string name="answer_empty">Vastaus ei voi olla tyhjä</string>>
 
+    <!-- Test Activity -->
+    <string name="exercise_title">Harjoitus %d/%d</string>
+
     <!-- Selection Fragment -->
     <string-array name="wordSet1">
         <item>kana</item>
