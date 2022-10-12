@@ -7,9 +7,9 @@ Dyslexia Screener is a prototype Android application for the early screening of 
 This project was developed as a course project
 at [Metropolia University of Applied Sciences](https://www.metropolia.fi/en) by:
 
-- Joonas Jouttijärvi (@joonasjouttijarvi)
-- Joel Tikkanen (@zzokku)
-- Peetu Saarinen (@ChargedByte)
+- Joonas Jouttijärvi ([@joonasjouttijarvi](https://github.com/joonasjouttijarvi))
+- Joel Tikkanen ([@zzokku](https://github.com/zzokku))
+- Peetu Saarinen ([@ChargedByte](https://github.com/ChargedByte))
 
 ## Development
 
